@@ -13,7 +13,7 @@ void imprimirMenu(){
 
 	srand(time(NULL));
 	numRand = (rand() % 3) + 1;    //Gerar um numero aleatorio entre 1 e 3 (itens de arte do menu)
-	cout << "A carregar ficheiro de menu "<< numRand << "...\n" << endl;       //Funçda de debug - LEMBRAR DE APAGAR
+	cout << "A carregar ficheiro de menu "<< numRand << "...\n" << endl;       //Função de debug - LEMBRAR DE APAGAR
 
 	switch (numRand)
 	{
@@ -24,6 +24,7 @@ void imprimirMenu(){
 			while(!loadFich.eof()){
 				getline(loadFich,temp);
 				cout << temp;
+				cout << endl;
 			}
 		}
 		loadFich.close();
@@ -35,6 +36,7 @@ void imprimirMenu(){
 			while(!loadFich.eof()){
 				getline(loadFich,temp);
 				cout << temp;
+				cout << endl;
 			}
 		}
 		loadFich.close();
@@ -46,6 +48,7 @@ void imprimirMenu(){
 			while(!loadFich.eof()){
 				getline(loadFich,temp);
 				cout << temp;
+				cout << endl;
 			}
 		}
 		loadFich.close();
