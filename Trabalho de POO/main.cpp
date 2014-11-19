@@ -3,8 +3,8 @@
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
-
-#define _WIN32_WINNT 0x0500
+#include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -67,18 +67,35 @@ void imprimirOpcoes(string dificuldade, string def_jogo){
 	cout << "Definicoes de jogo : " << def_jogo << endl << endl;
 }
 
-void verificarComandoMenu(){
-	string temp;
+void verificarComando(){
+	string comando, temp, buf;
+	int hash;
 
-	cin >> temp;
+	vector<string> bocados1;
+	vector<string> bocados2;
 
+	cin >> comando;
+	temp = comando;
+
+	stringstream ss(comando);
+	ss >> buf;
+	bocados1.push_back(buf);
+	comando = bocados1[0];
+
+	cout << "O comando e : " << comando << endl;  //Eliminar este comando, funcao de debug apenas
+
+	switch (hash)
+	{
+	default:
+		break;
+	}
 }
 
 void musFundo(){
-
+	
 }
 
-int main(){
+int main(int argc, char **argv){
 	string dif = "Normal";
 	string defs = "Originais";
 
@@ -88,7 +105,7 @@ int main(){
 
 	musFundo();
 
-	verificarComandoMenu();
+	verificarComando();
 	
 	return 0;
 }
