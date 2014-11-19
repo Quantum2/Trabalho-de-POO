@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <ctime>
 
+#define _WIN32_WINNT 0x0500
+
 using namespace std;
 
 void imprimirMenu(){
@@ -58,9 +60,35 @@ void imprimirMenu(){
 	}
 }
 
+void imprimirOpcoes(string dificuldade, string def_jogo){
+
+	cout << "--------------------------------------------------------------------------" << endl;
+	cout << "Dificuldade : " << dificuldade << endl;
+	cout << "Definicoes de jogo : " << def_jogo << endl << endl;
+}
+
+void verificarComandoMenu(){
+	string temp;
+
+	cin >> temp;
+
+}
+
+void musFundo(){
+
+}
+
 int main(){
+	string dif = "Normal";
+	string defs = "Originais";
 
 	imprimirMenu();
+
+	imprimirOpcoes(dif, defs);
+
+	musFundo();
+
+	verificarComandoMenu();
 	
 	return 0;
 }
