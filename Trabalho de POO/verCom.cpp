@@ -9,9 +9,9 @@
 
 using namespace std;
 
-void verificarComando(){
+int verificarComando(){
 	string comando, temp, buf;
-	int hash;
+	int stringNum;
 
 	vector<string> bocados1;
 	vector<string> bocados2;
@@ -24,11 +24,15 @@ void verificarComando(){
 	bocados1.push_back(buf);
 	comando = bocados1[0];
 
-	cout << "O comando e : " << comando << endl;  //Eliminar este comando, funcao de debug apenas
+	cout << "O comando e : " << comando << endl;  //Eliminar este comando futuramente, funcao de debug apenas para verificar separaçao de string
 
-	switch (hash)
+	stringNum = stoi(bocados1[0], nullptr, 0);
+
+	switch (stringNum)
 	{
 	default:
+		cout << "Comando desconhecido";
+		return 1;
 		break;
 	}
 }
