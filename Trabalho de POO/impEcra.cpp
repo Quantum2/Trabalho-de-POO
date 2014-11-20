@@ -5,7 +5,7 @@ using namespace std;
 void imprimirMenu(){
 	ifstream loadFich;
 	int numRand;
-	string temp;
+	string temp, fileName;
 	int i_temp, i;
 
 	Consola con;
@@ -13,48 +13,19 @@ void imprimirMenu(){
 
 	srand(time(NULL));
 	numRand = (rand() % 3) + 1;    //Gerar um numero aleatorio entre 1 e 3 (itens de arte do menu)
+	fileName = "men" + to_string(numRand);
+	fileName = fileName + ".txt";
+	
+	loadFich.open(fileName);  //Aqui começa a carregar os ficheiros com a arte de menu
 
-	switch (numRand)
-	{
-	case 1:
-		loadFich.open("men1.txt");  //Aqui começa a carregar os ficheiros com a arte de menu
-
-		if (loadFich.is_open()){
-			while (!loadFich.eof()){
-				getline(loadFich, temp);
-				cout << temp;
-				cout << endl;
-			}
+	if (loadFich.is_open()){
+		while (!loadFich.eof()){
+			getline(loadFich, temp);
+			cout << temp;
+			cout << endl;
 		}
-		loadFich.close();
-		break;
-	case 2:
-		loadFich.open("men2.txt");
-
-		if (loadFich.is_open()){
-			while (!loadFich.eof()){
-				getline(loadFich, temp);
-				cout << temp;
-				cout << endl;
-			}
-		}
-		loadFich.close();
-		break;
-	case 3:
-		loadFich.open("men3.txt");
-
-		if (loadFich.is_open()){
-			while (!loadFich.eof()){
-				getline(loadFich, temp);
-				cout << temp;
-				cout << endl;
-			}
-		}
-		loadFich.close();
-		break;
-	default:
-		break;
 	}
+	loadFich.close();
 }
 
 void imprimirOpcoes(string dificuldade, string def_jogo){
