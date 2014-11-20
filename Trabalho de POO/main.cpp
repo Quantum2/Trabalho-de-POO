@@ -6,14 +6,17 @@
 #include <vector>
 #include <sstream>
 #include <Windows.h>
-#include <mmsystem.h>
 #include "verCom.h"
 #include "Consola.h"
+#include "musFundo.h"
 
 #pragma comment(lib, "winmm.lib")
 
 #define LINHAS 35
 #define COLUNAS 80
+
+#define TAM_X 7
+#define TAM_Y 10
 
 using namespace std;
 
@@ -75,6 +78,8 @@ void imprimirMenu(){
 void imprimirOpcoes(string dificuldade, string def_jogo){
 	Consola con;
 	con.setTextColor(14);
+	con.setTextSize(TAM_X, TAM_Y);
+
 	int temp, i;
 	string s_temp;
 
@@ -103,13 +108,12 @@ void imprimirOpcoes(string dificuldade, string def_jogo){
 	cout << s_temp << endl << endl;
 }
 
-void musFundo(){
-	PlaySound(TEXT("song_menu.wav"), NULL, SND_FILENAME | SND_ASYNC);
-}
+
 
 int main(int argc, char **argv){
 	string dif = "Normal";
 	string defs = "Originais";
+	int abort = 0;
 	Consola con;
 
 	con.setScreenSize(LINHAS, COLUNAS);
@@ -118,9 +122,15 @@ int main(int argc, char **argv){
 
 	imprimirOpcoes(dif, defs);
 
-	musFundo();
+	musFundo(1);
 
-	verificarComando();
+	while (abort == 0)
+	{
+		verificarComando();
+		con.clrscr();
+		imprimirMenu();
+		imprimirOpcoes(dif, defs);
+	}
 	
 	return 0;
 }

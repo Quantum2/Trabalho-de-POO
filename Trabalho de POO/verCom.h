@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+void registar_comandos();
+
 int verificarComando();
 
 #endif

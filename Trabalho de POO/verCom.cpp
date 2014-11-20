@@ -5,14 +5,27 @@
 #include <ctime>
 #include <vector>
 #include <sstream>
+#include <map>
 #include "verCom.h"
 #include "Consola.h"
+#include "musFundo.h"
 
 using namespace std;
 
+enum string_comandos {
+	stop_music, mkgame, play_music
+};
+
+map <string, string_comandos> comandos;
+
+void registar_comandos(){
+	comandos["stopmusic"] = stop_music;
+	comandos["playmusic"] = play_music;
+	comandos["mkgame"] = mkgame;
+}
+
 int verificarComando(){
-	string comando, temp, buf;
-	int stringNum;
+	string comando, temp, buf;;
 	Consola con;
 
 	con.setTextColor(8);
@@ -28,14 +41,19 @@ int verificarComando(){
 	bocados1.push_back(buf);
 	comando = bocados1[0];
 
-	cout << "O comando e : " << comando << endl;  //Eliminar este comando futuramente, funcao de debug apenas para verificar separaçao de string
+	cout << "O comando inserido foi : " << comando << endl;  //Eliminar este comando futuramente, funcao de debug apenas para verificar separaçao de string
 
-	stringNum = stoi(bocados1[0], nullptr, 0);
-
-	switch (stringNum)
+	switch (comandos[bocados1[0]])
 	{
+	case stop_music:
+		musFundo(2);
+		break;
+	case play_music:
+		musFundo(1);
+		break;
 	default:
 		cout << "Comando desconhecido";
+		getchar();
 		return 1;
 		break;
 	}
