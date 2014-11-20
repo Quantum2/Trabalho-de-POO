@@ -6,6 +6,10 @@
 #include <vector>
 #include <sstream>
 #include "verCom.h"
+#include "Consola.h"
+
+#define LINHAS 35
+#define COLUNAS 80
 
 using namespace std;
 
@@ -13,6 +17,9 @@ void imprimirMenu(){
 	ifstream loadFich;
 	int numRand;
 	string temp;
+
+	Consola con;
+	con.setTextColor(11);    //Mete cor da arte de menu a azul claro
 
 	srand(time(NULL));
 	numRand = (rand() % 3) + 1;    //Gerar um numero aleatorio entre 1 e 3 (itens de arte do menu)
@@ -62,13 +69,35 @@ void imprimirMenu(){
 }
 
 void imprimirOpcoes(string dificuldade, string def_jogo){
+	Consola con;
+	con.setTextColor(14);
+	int temp, i;
+	string s_temp;
 
-	cout << "--------------------------------------------------------------------------" << endl;
-	cout << "Dificuldade : " << dificuldade << endl;
-	cout << "Definicoes de jogo : " << def_jogo << endl << endl;
+	for (i = 0; i < COLUNAS; i++)
+		cout << "-";
+	
+	cout << endl;
+
+	s_temp = "Dificuldade : " + dificuldade;
+
+	temp = COLUNAS / 2;
+	temp = temp - (s_temp.length() / 2);
+	for (i = 0; i < temp; i++)
+		cout << " ";
+
+	cout << s_temp << endl;
+
+	s_temp = "Definicoes de jogo : " + def_jogo;
+
+	temp = COLUNAS / 2;
+	temp = temp - (s_temp.length() / 2);
+
+	for (i = 0; i < temp; i++)
+		cout << " ";
+
+	cout << s_temp << endl << endl;
 }
-
-
 
 void musFundo(){
 	
@@ -77,6 +106,9 @@ void musFundo(){
 int main(int argc, char **argv){
 	string dif = "Normal";
 	string defs = "Originais";
+	Consola con;
+
+	con.setScreenSize(LINHAS, COLUNAS);
 
 	imprimirMenu();
 

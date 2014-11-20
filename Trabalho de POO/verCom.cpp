@@ -6,16 +6,20 @@
 #include <vector>
 #include <sstream>
 #include "verCom.h"
+#include "Consola.h"
 
 using namespace std;
 
 int verificarComando(){
 	string comando, temp, buf;
 	int stringNum;
+	Consola con;
 
+	con.setTextColor(8);
 	vector<string> bocados1;
 	vector<string> bocados2;
 
+	cout << "Escreva um comando : " ;
 	cin >> comando;
 	temp = comando;
 
