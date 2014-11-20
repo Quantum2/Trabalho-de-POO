@@ -5,8 +5,12 @@
 #include <ctime>
 #include <vector>
 #include <sstream>
+#include <Windows.h>
+#include <mmsystem.h>
 #include "verCom.h"
 #include "Consola.h"
+
+#pragma comment(lib, "winmm.lib")
 
 #define LINHAS 35
 #define COLUNAS 80
@@ -100,7 +104,7 @@ void imprimirOpcoes(string dificuldade, string def_jogo){
 }
 
 void musFundo(){
-	
+	PlaySound(TEXT("song_menu.wav"), NULL, SND_FILENAME | SND_ASYNC);
 }
 
 int main(int argc, char **argv){
