@@ -13,7 +13,7 @@
 using namespace std;
 
 enum string_comandos {
-	stop_music, mkgame, play_music
+	stop_music, mkgame, play_music, pop
 };
 
 map <string, string_comandos> comandos;
@@ -22,6 +22,7 @@ void registar_comandos(){
 	comandos["stopmusic"] = stop_music;
 	comandos["playmusic"] = play_music;
 	comandos["mkgame"] = mkgame;
+	comandos["pop"] = pop;
 }
 
 int verificarComando(){
