@@ -6,15 +6,15 @@
 #include "musFundo.h"
 
 void musFundo(int controlador){
-	switch (controlador)
-	{
-	case 1:
+	
+	if (controlador == 1){
 		PlaySound(TEXT("song_menu.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		break;
-	case 2:
-		PlaySound(NULL, 0, 0);
-		break;
-	default:
-		break;
+		waveOutSetVolume(NULL, 0xFFFF);
+	}
+	if (controlador == 2){
+		waveOutSetVolume(NULL, 0x0000);
+	}
+	if (controlador == 3){
+		waveOutSetVolume(NULL, 0xFFFF);
 	}
 }

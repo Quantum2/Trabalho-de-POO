@@ -5,33 +5,20 @@
 #include <ctime>
 #include <vector>
 #include <sstream>
-#include <map>
 #include "verCom.h"
 #include "Consola.h"
 #include "musFundo.h"
+#include "impEcra.h"
 
 using namespace std;
 
-enum string_comandos {
-	stop_music, mkgame, play_music, pop
-};
-
-map <string, string_comandos> comandos;
-
-void registar_comandos(){
-	comandos["stopmusic"] = stop_music;
-	comandos["playmusic"] = play_music;
-	comandos["mkgame"] = mkgame;
-	comandos["pop"] = pop;
-}
-
 int verificarComando(){
-	string comando, temp, buf;;
+	string comando, temp, buf;
+	int controlo = 0;
 	Consola con;
 
 	con.setTextColor(8);
 	vector<string> bocados1;
-	vector<string> bocados2;
 
 	cout << "Escreva um comando : " ;
 	cin >> comando;
@@ -41,21 +28,38 @@ int verificarComando(){
 	ss >> buf;
 	bocados1.push_back(buf);
 	comando = bocados1[0];
+    ss.flush();
 
 	cout << "O comando inserido foi : " << comando << endl;  //Eliminar este comando futuramente, funcao de debug apenas para verificar separaçao de string
 
-	switch (comandos[bocados1[0]])
-	{
-	case stop_music:
-		musFundo(2);
-		break;
-	case play_music:
-		musFundo(1);
-		break;
-	default:
-		cout << "Comando desconhecido";
-		getchar();
-		return 1;
-		break;
+	if (bocados1[0] == "playmusic"){
+		musFundo(3);
+		controlo = 1;
+		con.clrscr();
+		imprimirMenu();
+		imprimirOpcoes("Normal", "Originais");
+		verificarComando();
 	}
+	if (bocados1[0] == "stopmusic"){
+		musFundo(2);
+		controlo = 1;
+		con.clrscr();
+		imprimirMenu();
+		imprimirOpcoes("Normal", "Originais");
+		verificarComando();
+	}
+
+
+	if (controlo == 0)
+	{
+		cout << "Comando nao reconhecido !" << endl;
+		fflush(stdin);                                        //Lembrar de arranjar soluçao melhor para subsituir o fflush
+		getchar();
+		con.clrscr();
+		imprimirMenu();
+		imprimirOpcoes("Normal", "Originais");
+		verificarComando();
+	}
+
+	return 0;
 }
