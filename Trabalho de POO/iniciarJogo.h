@@ -2,9 +2,12 @@
 #define INICIAR_JOGO
 
 #include <iostream>
+#include <string>
+#include "Consola.h"
+#include "impEcra.h"
 
 using namespace std;
 
-void criarCampo(string arg1, string arg2);
+void criarCampo(string linhas, string colunas);
 
 #endif
