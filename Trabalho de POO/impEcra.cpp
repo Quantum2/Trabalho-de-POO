@@ -21,6 +21,14 @@ void imprimirMenu(){
 	if (loadFich.is_open()){
 		while (!loadFich.eof()){
 			getline(loadFich, temp);
+
+			/*
+			i_temp = temp.length();          Codigo prototipo para centrar a arte de menu, ainda em trabalho nao tirar comentario
+			i_temp = COLUNAS - i_temp;
+			i_temp = i_temp / 2;
+			for (i = 0; i <= i_temp; i++)
+				cout << " ";*/
+			
 			cout << temp;
 			cout << endl;
 		}

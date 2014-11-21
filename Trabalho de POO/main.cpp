@@ -10,6 +10,7 @@
 #include "Consola.h"
 #include "musFundo.h"
 #include "impEcra.h"
+#include "iniciarJogo.h"
 
 using namespace std;
 

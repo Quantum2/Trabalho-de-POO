@@ -27,7 +27,6 @@ int verificarComando(){
 	stringstream ss(comando);
 	ss >> buf;
 	bocados1.push_back(buf);
-	comando = bocados1[0];
     ss.flush();
 
 	cout << "O comando inserido foi : " << comando << endl;  //Eliminar este comando futuramente, funcao de debug apenas para verificar separaçao de string
@@ -49,6 +48,10 @@ int verificarComando(){
 		verificarComando();
 	}
 
+	if (bocados1[0] == "mkgame")
+	{
+
+	}
 
 	if (controlo == 0)
 	{
