@@ -77,7 +77,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Consola.cpp" />
-    <ClCompile Include="impEcra.cpp" />
     <ClCompile Include="iniciarJogo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="musFundo.cpp" />
@@ -86,7 +85,6 @@
   <ItemGroup>
     <ClInclude Include="Consola.h" />
     <ClInclude Include="iniciarJogo.h" />
-    <ClInclude Include="impEcra.h" />
     <ClInclude Include="musFundo.h" />
     <ClInclude Include="verCom.h" />
   </ItemGroup>

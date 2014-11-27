@@ -3,8 +3,6 @@
 
 #include <iostream>
 
-void registar_comandos();
-
-int verificarComando();
+int verificarComandoJogo();
 
 #endif

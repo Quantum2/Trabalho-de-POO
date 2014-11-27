@@ -9,25 +9,20 @@
 #include "verCom.h"
 #include "Consola.h"
 #include "musFundo.h"
-#include "impEcra.h"
 #include "iniciarJogo.h"
+
+#define LINHAS 35
+#define COLUNAS 80
 
 using namespace std;
 
 int main(int argc, char **argv){
-	Consola con;
-	string dif = "Normal";
-	string defs = "Originais";
-
-	con.setScreenSize(LINHAS, COLUNAS);
-
-	imprimirMenu();
-
-	imprimirOpcoes(dif, defs);
 
 	musFundo(1);
 
-	verificarComando();
+	criarCampo(LINHAS, COLUNAS);
+
+	verificarComandoJogo();
 
 	return 0;
 
