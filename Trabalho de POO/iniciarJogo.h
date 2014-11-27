@@ -19,15 +19,29 @@ public:
 	Mapa(int tamx, int tamy);
 
 	void imprimirMapa();
-	void defTam(int a, int b);
 private:
 	int tam_x;
 	int tam_y;
 
+	void defTam(int a, int b);
 	Mapa() {}
 };
 
-class Sidebar{};
+class Sidebar{
+public:
+	int getDist();
+
+	Sidebar(int colunas);
+
+	void imprimirSidebar();
+	void mudarDist(int change);
+private:
+	int dist;
+
+	void setDist(int colunas);
+
+	Sidebar() {}
+};
 
 void criarCampo(int linhas, int colunas);
 

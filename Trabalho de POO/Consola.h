@@ -6,6 +6,9 @@
 #ifndef __CONSOLA_H__
 #define __CONSOLA_H__
 
+#define LINHAS 35
+#define COLUNAS 80
+
 #include <windows.h>
 
 class Consola {

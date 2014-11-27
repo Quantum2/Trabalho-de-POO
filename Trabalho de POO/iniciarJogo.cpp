@@ -43,9 +43,33 @@ int Mapa::getTamY()
 	return tam_y;
 }
 
+Sidebar::Sidebar(int colunas){
+	setDist(colunas);
+}
+
+void Sidebar::setDist(int colunas){
+	dist = colunas + 5;
+}
+
+void Sidebar::imprimirSidebar(){
+	Consola cursor;
+	char topo[] = "----------------------";
+	DWORD saida;
+	HANDLE hconsola;
+	hconsola = GetStdHandle(STD_OUTPUT_HANDLE);
+	
+	cursor.gotoxy(dist, 2);
+	cursor.setTextColor(cursor.AMARELO_CLARO);
+
+	WriteConsoleA(hconsola, topo, strlen(topo), &saida, NULL);
+
+	cursor.gotoxy(0, LINHAS + 4);
+}
+
 void criarCampo(int linhas, int colunas){
 	Consola con;
 	Mapa map(linhas, colunas);
+	Sidebar barra(map.getTamY());
 
 	con.clrscr();
 	con.setScreenSize(linhas + 6, colunas + 30);
@@ -53,6 +77,7 @@ void criarCampo(int linhas, int colunas){
 	con.setTextColor(con.ROXO);
 
 	map.imprimirMapa();
+	barra.imprimirSidebar();
 
 	verificarComandoJogo();
 }
