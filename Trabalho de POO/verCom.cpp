@@ -13,7 +13,7 @@
 using namespace std;
 
 int verificarComandoJogo(){
-	string comando, temp, buf;
+	string comando, buf;
 	Consola con;
 	int com_int = 0;
 
@@ -23,29 +23,26 @@ int verificarComandoJogo(){
 
 	cout << "Escreva um comando : ";
 	cin >> comando;
-	temp = comando;
 
+	stringstream s_temp(comando);
 	stringstream ss(comando);
 	ss >> buf;
 	bocados1.push_back(buf);
 	ss.flush();
 
-	if (buf == "load"){                                                                     //Verificaçao e implementação do comando LOAD  **EM PROGRESSO**
-		stringstream s_temp(temp);
-		com_int = 1;
-		buf.clear();
+	if (buf == "load"){                                                                                //Verificaçao e implementação do comando LOAD  **EM PROGRESSO**
+		string buf_load;
 		
-		while (s_temp >> buf){
-			argumentos.push_back(buf);
+		for (int i = 0; i < 2; i++){
+			s_temp >> buf_load;
+			argumentos.push_back(buf_load);
 		}
 
-		if (argumentos.size() != 1)
-		{
-			cout << "Numero de argumentos errado !" << argumentos.size() << endl;
-			getchar();
-		}
+		cout << "A carregar o ficheiro de configuracao " << argumentos[1] << "..." << endl;
 
-
+		com_int = 1;
+		argumentos.clear();
+		fflush(stdin);
 		verificarComandoJogo();
 	}
 
