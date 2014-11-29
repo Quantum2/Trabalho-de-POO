@@ -53,15 +53,27 @@ void Sidebar::setDist(int colunas){
 
 void Sidebar::imprimirSidebar(){
 	Consola cursor;
-	char topo[] = "----------------------";
+	char topo[] = "----------------------\n";
+	char lateral[] = "|                    |\n";
+	char enter[] = "\n";
 	DWORD saida;
 	HANDLE hconsola;
+	int i, linhas_sidebar = 24;
 	hconsola = GetStdHandle(STD_OUTPUT_HANDLE);
 	
 	cursor.gotoxy(dist, 2);
 	cursor.setTextColor(cursor.AMARELO_CLARO);
 
 	WriteConsoleA(hconsola, topo, strlen(topo), &saida, NULL);
+
+	for (i = 0; i <= linhas_sidebar; i++){
+		cursor.gotoxy(dist, 3 + i);
+		WriteConsoleA(hconsola, lateral, strlen(lateral), &saida, NULL);
+		if (i == linhas_sidebar){
+			cursor.gotoxy(dist, 3 + i);
+			WriteConsoleA(hconsola, topo, strlen(topo), &saida, NULL);
+		}
+	}
 
 	cursor.gotoxy(0, LINHAS + 4);
 }
@@ -72,12 +84,10 @@ void criarCampo(int linhas, int colunas){
 	Sidebar barra(map.getTamY());
 
 	con.clrscr();
-	con.setScreenSize(linhas + 6, colunas + 30);
+	con.setScreenSize(linhas + 8, colunas + 30);
 	con.setTextSize(TAM_X, TAM_Y);
 	con.setTextColor(con.ROXO);
 
 	map.imprimirMapa();
 	barra.imprimirSidebar();
-
-	verificarComandoJogo();
 }

@@ -17,12 +17,11 @@ using namespace std;
 
 int main(int argc, char **argv){
 
-	//musFundo(1);
+	//musFundo(1);                Desactivado por enquanto
 
 	criarCampo(LINHAS, COLUNAS);
 
 	verificarComandoJogo();
 
 	return 0;
-
 	}
