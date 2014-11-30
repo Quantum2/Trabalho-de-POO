@@ -3,6 +3,12 @@
 Mapa::Mapa(int tamx, int tamy)
 {
 	defTam(tamx, tamy);
+	setCoords(0, 0);
+}
+
+void Mapa::setCoords(int x, int y){
+	coords_x = x;
+	coords_y = y;
 }
 
 void Mapa::defTam(int a, int b)
@@ -41,6 +47,16 @@ int Mapa::getTamX()
 int Mapa::getTamY()
 {
 	return tam_y;
+}
+
+int Mapa::getCoord_X(){
+
+	return coords_x;
+}
+
+int Mapa::getCoords_Y(){
+
+	return coords_y;
 }
 
 Sidebar::Sidebar(int colunas){

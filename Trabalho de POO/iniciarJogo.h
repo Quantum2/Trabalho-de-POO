@@ -19,10 +19,15 @@ public:
 	Mapa(int tamx, int tamy);
 
 	void imprimirMapa();
+	int getCoord_X();
+	int getCoords_Y();
 private:
 	int tam_x;
 	int tam_y;
+	int coords_x; 
+	int coords_y;
 
+	void setCoords(int x, int y);
 	void defTam(int a, int b);
 	Mapa() {}
 };
