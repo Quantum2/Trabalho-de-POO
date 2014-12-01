@@ -8,6 +8,8 @@
 #include <string>
 #include "Consola.h"
 #include "verCom.h"
+#include "Unidades.h"
+#include "Util.h"
 
 using namespace std;
 
@@ -26,7 +28,10 @@ private:
 	int tam_y;
 	int coords_x; 
 	int coords_y;
+	int size_x;
+	int size_y;
 
+	void setSize(int tam1, int tam2);
 	void setCoords(int x, int y);
 	void defTam(int a, int b);
 	Mapa() {}
@@ -51,5 +56,7 @@ private:
 void criarCampo(int linhas, int colunas);
 
 void reimp(Mapa map, Sidebar barra);
+
+void criarUnidades(int tipo, int quant);
 
 #endif

@@ -2,8 +2,14 @@
 
 Mapa::Mapa(int tamx, int tamy)
 {
-	defTam(tamx, tamy);
+	setSize(tamx, tamy);
+	defTam(LINHAS, COLUNAS);
 	setCoords(0, 0);
+}
+
+void Mapa::setSize(int tam1, int tam2){
+	size_x = tam1;
+	size_y = tam2;
 }
 
 void Mapa::setCoords(int x, int y){
@@ -23,18 +29,18 @@ void Mapa::imprimirMapa()
 
 	cout << endl;
 	for (j = 0; j <= tam_y + 2; j++){
-		cout << "-";
+		cout << char(205);
 	}
 	cout << endl;
 	for (i = 0; i <= tam_x; i++){
-		cout << "|";
+		cout << char(186);
 		for (j = 0; j <= tam_y; j++){
 			cout << " ";
 		}
-		cout << "|" << endl;
+		cout << char(186) << endl;
 	}
 	for (j = 0; j <= tam_y + 2; j++){
-		cout << "-";
+		cout << char(205);
 	}
 	cout << endl;
 }
@@ -101,7 +107,7 @@ void criarCampo(int linhas, int colunas){
 
 	reimp(map, barra);
 
-	con.gotoxy(0, linhas + 4);
+	con.gotoxy(0, LINHAS + 4);
 	verificarComandoJogo();
 }
 
@@ -117,4 +123,6 @@ void reimp(Mapa map, Sidebar barra){
 	barra.imprimirSidebar();
 	}
 
-void criarUnidades(int);
+void criarUnidades(int tipo, int quant){
+
+}
