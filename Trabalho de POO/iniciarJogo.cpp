@@ -69,7 +69,7 @@ void Sidebar::setDist(int colunas){
 
 void Sidebar::imprimirSidebar(){
 	Consola cursor;
-	char topo[] = "----------------------\n";
+	char topo[] = "----------------------\n";								//Mudar para string C++
 	char lateral[] = "|                    |\n";
 	char enter[] = "\n";
 	DWORD saida;
@@ -99,11 +99,22 @@ void criarCampo(int linhas, int colunas){
 	Mapa map(linhas, colunas);
 	Sidebar barra(map.getTamY());
 
+	reimp(map, barra);
+
+	con.gotoxy(0, linhas + 4);
+	verificarComandoJogo();
+}
+
+void reimp(Mapa map, Sidebar barra){
+	Consola con;
+
 	con.clrscr();
-	con.setScreenSize(linhas + 8, colunas + 30);
+	con.setScreenSize(LINHAS + 8, COLUNAS + 30);
 	con.setTextSize(TAM_X, TAM_Y);
 	con.setTextColor(con.ROXO);
 
 	map.imprimirMapa();
 	barra.imprimirSidebar();
-}
+	}
+
+void criarUnidades(int);

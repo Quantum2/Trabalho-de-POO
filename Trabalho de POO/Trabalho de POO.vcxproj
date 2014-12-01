@@ -77,15 +77,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Consola.cpp" />
+    <ClCompile Include="imprimirUni.cpp" />
     <ClCompile Include="iniciarJogo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="musFundo.cpp" />
+    <ClCompile Include="Unidades.cpp" />
     <ClCompile Include="verCom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Consola.h" />
+    <ClInclude Include="imprimirUni.h" />
     <ClInclude Include="iniciarJogo.h" />
     <ClInclude Include="musFundo.h" />
+    <ClInclude Include="Unidades.h" />
+    <ClInclude Include="Util.h" />
     <ClInclude Include="verCom.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

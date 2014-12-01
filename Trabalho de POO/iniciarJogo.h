@@ -50,4 +50,6 @@ private:
 
 void criarCampo(int linhas, int colunas);
 
+void reimp(Mapa map, Sidebar barra);
+
 #endif

@@ -5,6 +5,7 @@
 #include <ctime>
 #include <vector>
 #include <sstream>
+#include <fstream>
 #include "verCom.h"
 #include "Consola.h"
 #include "musFundo.h"
@@ -16,39 +17,61 @@ int verificarComandoJogo(){
 	string comando, buf;
 	Consola con;
 	int com_int = 0;
+	int args = 0;
 
 	con.setTextColor(8);
 	vector<string> bocados1;
-	vector<string> argumentos;
 
-	cout << "Escreva um comando : ";
-	cin >> comando;
+	cout << ">>> ";
+	getline(cin, comando);
 
-	stringstream s_temp(comando);
-	stringstream ss(comando);
-	ss >> buf;
-	bocados1.push_back(buf);
-	ss.flush();
+	istringstream ss(comando);
 
-	if (buf == "load"){                                                                                //Verificaçao e implementação do comando LOAD  **EM PROGRESSO**
-		string buf_load;
-		
-		for (int i = 0; i < 2; i++){
-			s_temp >> buf_load;
-			argumentos.push_back(buf_load);
+	while (ss)
+	{
+		buf.clear();
+		switch (args){
+		case 0:
+			ss >> buf;
+			bocados1.push_back(buf);
+			break;
+		case 1:
+			ss >> buf;
+			bocados1.push_back(buf);
+			break;
+		case 2:
+			ss >> buf;
+			bocados1.push_back(buf);
+			break;
+		default:
+			break;
+		}
+	}
+
+	if (bocados1[0] == "load"){                              //Verificaçao e implementação do comando LOAD  **EM PROGRESSO**
+		ifstream ficheiro;
+		string temp;
+
+		cout << "A carregar o ficheiro de configuracao " << bocados1[1] << "..." << endl;
+
+		ficheiro.open(bocados1[1]);
+
+		while (!ficheiro.eof()){
+			getline(ficheiro, temp);
 		}
 
-		cout << "A carregar o ficheiro de configuracao " << argumentos[1] << "..." << endl;
-
 		com_int = 1;
-		argumentos.clear();
-		fflush(stdin);
+		ficheiro.close();
 		verificarComandoJogo();
+	}
+
+	if (bocados1[0] == "mkgame")
+	{
+		criarCampo(stoi(bocados1[1]), stoi(bocados1[2]));
 	}
 
 	if (com_int == 0){
 		cout << "Comando nao encontrado !" << endl;
-		fflush(stdin);
 		getchar();
 		criarCampo(LINHAS, COLUNAS);
 		verificarComandoJogo();
