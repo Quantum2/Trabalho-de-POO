@@ -12,6 +12,7 @@ class Unidade{
 public:
 	int getCoordX();
 	int getCoordY();
+	string getTipo();
 
 	Unidade(int x, int y, string tipo);
 private:
@@ -30,7 +31,6 @@ public:
 	string getNome();
 	int getID();
 
-
 	Popul(string nomes);
 private:
 	string nome;
@@ -40,12 +40,8 @@ private:
 	Popul(){}
 };
 
-class impressor{
-public:
-	void imprimirUni(Unidade target);
-	impressor();
-private:
-	Unidade aImprimir;
-};
+class Recursos{};
+
+void Pops_func(Popul pop_a);
 
 #endif

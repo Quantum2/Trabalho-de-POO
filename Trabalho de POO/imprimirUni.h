@@ -9,6 +9,6 @@
 
 using namespace std;
 
-void imprimirUnidades(Unidade uni1);
+void imprimirUnidades(Unidade uni);
 
 #endif

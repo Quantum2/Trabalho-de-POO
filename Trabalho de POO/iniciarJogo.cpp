@@ -1,5 +1,7 @@
 #include "iniciarJogo.h"
 
+vector<Unidade> units;
+
 Mapa::Mapa(int tamx, int tamy)
 {
 	setSize(tamx, tamy);
@@ -108,7 +110,6 @@ void criarCampo(int linhas, int colunas){
 	reimp(map, barra);
 
 	con.gotoxy(0, LINHAS + 4);
-	verificarComandoJogo();
 }
 
 void reimp(Mapa map, Sidebar barra){
@@ -123,6 +124,6 @@ void reimp(Mapa map, Sidebar barra){
 	barra.imprimirSidebar();
 	}
 
-void criarUnidades(int tipo, int quant){
-
+void criarUnidades(string tipo, string nome_pop, int x, int y){
+	
 }

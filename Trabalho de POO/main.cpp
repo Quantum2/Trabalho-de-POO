@@ -12,12 +12,12 @@
 #include "Consola.h"
 #include "musFundo.h"
 #include "iniciarJogo.h"
+#include "Unidades.h"
+#include "Util.h"
 
 using namespace std;
 
-int main(int argc, char **argv){
-
-	//musFundo(1);                Desactivado por enquanto
+int main(int argc, char **argv){     
 
 	verificarComandoJogo();
 

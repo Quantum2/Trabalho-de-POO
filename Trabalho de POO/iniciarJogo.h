@@ -57,6 +57,6 @@ void criarCampo(int linhas, int colunas);
 
 void reimp(Mapa map, Sidebar barra);
 
-void criarUnidades(int tipo, int quant);
+void criarUnidades(string tipo, string nome_pop, int x, int y);
 
 #endif

@@ -2,11 +2,19 @@
 
 using namespace std;
 
+void resetEcra(){
+	Mapa map(largura, altura);
+	Sidebar sidy(map.getTamY());
+
+	reimp(map, sidy);
+}
+
 int verificarComandoJogo(){
 	string comando, buf;
 	Consola con;
 	int com_int = 0;
 	int args = 0;
+	int jogo_decorrer = 0;
 
 	con.setTextColor(8);
 	vector<string> bocados1;
@@ -29,6 +37,14 @@ int verificarComandoJogo(){
 			bocados1.push_back(buf);
 			break;
 		case 2:
+			ss >> buf;
+			bocados1.push_back(buf);
+			break;
+		case 3:
+			ss >> buf;
+			bocados1.push_back(buf);
+			break;
+		case 4:
 			ss >> buf;
 			bocados1.push_back(buf);
 			break;
@@ -62,17 +78,30 @@ int verificarComandoJogo(){
 	if (bocados1[0] == "mkgame")
 	{
 		criarCampo(stoi(bocados1[1]), stoi(bocados1[2]));
+		largura = stoi(bocados1[1]);
+		altura = stoi(bocados1[2]);
+		verificarComandoJogo();
 	}
 
 	if (bocados1[0] == "pop")
 	{
-		
+		Popul temp(bocados1[1]);
+
+		Pops_func(temp);
+
+		resetEcra();
+		verificarComandoJogo();
+	}
+
+	if (bocados1[0] == "sete")
+	{
+		criarUnidades(bocados1[2],bocados1[1], stoi(bocados1[3]), stoi(bocados1[4]));
 	}
 
 	if (com_int == 0){
 		cout << "Comando nao encontrado !" << endl;
 		getchar();
-		criarCampo(LINHAS, COLUNAS);
+		resetEcra();
 		verificarComandoJogo();
 	}
 
@@ -87,6 +116,8 @@ int verificarComandoJogo(vector<string> vec, int linha){
 
 	con.setTextColor(8);
 	vector<string> bocados1;
+
+	comando = bocados1[linha];
 
 	istringstream ss(comando);
 
@@ -143,7 +174,7 @@ int verificarComandoJogo(vector<string> vec, int linha){
 		if (com_int == 0){
 			cout << "Comando nao encontrado !" << endl;
 			getchar();
-			criarCampo(LINHAS, COLUNAS);
+			resetEcra();
 			verificarComandoJogo();
 		}
 
