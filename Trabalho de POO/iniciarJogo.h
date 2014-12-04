@@ -10,6 +10,7 @@
 #include "verCom.h"
 #include "Unidades.h"
 #include "Util.h"
+#include "imprimirUni.h"
 
 using namespace std;
 

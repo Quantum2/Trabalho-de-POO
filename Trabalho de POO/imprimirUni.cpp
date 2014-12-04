@@ -1,6 +1,6 @@
 #include "imprimirUni.h"
 
-void imprimirUnidades(Unidade uni){
-	cout << "O tipo da unidade e : " << uni.getTipo() << endl;
+void imprimirUnidades(vector<Unidade> unit){
+	
 }
 

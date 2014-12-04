@@ -4,11 +4,13 @@
 #include <iostream>
 #include <string>
 #include <Windows.h>
+#include <vector>
 #include "Unidades.h"
 #include "Util.h"
+#include "iniciarJogo.h"
 
 using namespace std;
 
-void imprimirUnidades(Unidade uni);
+void imprimirUnidades(vector<Unidade> unit);
 
 #endif
