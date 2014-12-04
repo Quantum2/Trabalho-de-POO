@@ -125,5 +125,9 @@ void reimp(Mapa map, Sidebar barra){
 	}
 
 void criarUnidades(string tipo, string nome_pop, int x, int y){
-	
+	Unidade temp(x, y, tipo);
+
+	units.push_back(temp);
+
+	imprimirUnidades(units);
 }
