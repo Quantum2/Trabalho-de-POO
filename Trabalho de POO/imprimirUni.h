@@ -4,14 +4,11 @@
 #include <iostream>
 #include <string>
 #include <Windows.h>
+#include "Unidades.h"
+#include "Util.h"
 
 using namespace std;
 
-class ImpressorUnidades{
-public:
-	ImpressorUnidades();
-private:
-	
-};
+void imprimirUnidades(Unidade uni1);
 
 #endif

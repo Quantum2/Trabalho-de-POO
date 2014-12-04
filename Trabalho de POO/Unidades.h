@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include "Util.h"
 
 using namespace std;
@@ -27,16 +28,15 @@ private:
 class Popul{
 public:
 	string getNome();
-	int getQuantidade();
+	int getID();
 
-	Popul(string nome, int quant);
+
+	Popul(string nomes);
 private:
 	string nome;
-	int quantidade;
 
-
-	void setNome(string nome);
-	void setQuant(int quanti);
+	void setNome(string nomes);
+	void setID(int ID);
 	Popul(){}
 };
 

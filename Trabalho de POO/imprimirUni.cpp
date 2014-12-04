@@ -1,5 +1,6 @@
 #include "imprimirUni.h"
 
-ImpressorUnidades::ImpressorUnidades(){
+void imprimirUnidades(Unidade uni1){
 
 }
+
