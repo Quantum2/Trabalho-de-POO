@@ -1,6 +1,7 @@
 #include "iniciarJogo.h"
 
 vector<Unidade> units;
+int coords_mapa_x, coords_mapa_y;
 
 Mapa::Mapa(int tamx, int tamy)
 {
@@ -106,6 +107,8 @@ void criarCampo(int linhas, int colunas){
 	Consola con;
 	Mapa map(linhas, colunas);
 	Sidebar barra(map.getTamY());
+	coords_mapa_x = linhas;
+	coords_mapa_y = colunas;
 
 	reimp(map, barra);
 
@@ -123,8 +126,6 @@ void reimp(Mapa map, Sidebar barra){
 	map.imprimirMapa();
 	barra.imprimirSidebar();
 
-	coords_mapa_x = map.getCoord_X();
-	coords_mapa_y = map.getCoords_Y();
 	}
 
 void criarUnidades(string tipo, string nome_pop, int x, int y){

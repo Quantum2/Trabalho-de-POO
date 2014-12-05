@@ -21,7 +21,4 @@ const static char baixo_d = char();
 static int largura;
 static int altura;
 
-static int coords_mapa_x;
-static int coords_mapa_y;
-
 #endif

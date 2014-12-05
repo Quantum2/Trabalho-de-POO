@@ -13,6 +13,8 @@
 
 using namespace std;
 
+extern int coords_mapa_x, coords_mapa_y;
+
 class Mapa{
 public:
 	int getTamX();
