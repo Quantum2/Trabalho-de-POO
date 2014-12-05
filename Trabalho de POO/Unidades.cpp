@@ -62,6 +62,10 @@ void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy){
 		if (pos_x < mapa_coordx && pos_y < mapa_coordy){
 			con.gotoxy(pos_x, pos_y);
 			WriteConsoleA(hconsola, &topo_e, 1, &saida, NULL);
+			WriteConsoleA(hconsola, &topo_d, 1, &saida, NULL);
+			con.gotoxy(pos_x, pos_y + 1);
+			WriteConsoleA(hconsola, &baixo_e, 1, &saida, NULL);
+			WriteConsoleA(hconsola, &baixo_d, 1, &saida, NULL);
 		}
 	}
 }
