@@ -68,4 +68,12 @@ void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy){
 			WriteConsoleA(hconsola, &baixo_d, 1, &saida, NULL);
 		}
 	}
+
+	con.gotoxy(0, LINHAS + 4);
+	
+	for (int j = 0; j < 50; j++){
+		WriteConsoleA(hconsola, &limpar, 1, &saida, NULL);
+	}
+
+	con.gotoxy(0, LINHAS + 4);
 }

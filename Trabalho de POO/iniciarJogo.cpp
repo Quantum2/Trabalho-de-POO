@@ -2,6 +2,7 @@
 
 vector<Unidade> units;
 int coords_mapa_x, coords_mapa_y;
+int posicao_jogo_x, posicao_jogo_y;
 
 Mapa::Mapa(int tamx, int tamy)
 {
@@ -134,4 +135,6 @@ void criarUnidades(string tipo, string nome_pop, int x, int y){
 	units.push_back(temp);
 
 	imprimirUnidades(units, coords_mapa_x, coords_mapa_y);
+
+	verificarComandoJogo();
 }
