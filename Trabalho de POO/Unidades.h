@@ -44,4 +44,6 @@ class Recursos{};
 
 void Pops_func(Popul pop_a);
 
+void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy);
+
 #endif

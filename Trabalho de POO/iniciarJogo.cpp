@@ -122,6 +122,9 @@ void reimp(Mapa map, Sidebar barra){
 
 	map.imprimirMapa();
 	barra.imprimirSidebar();
+
+	coords_mapa_x = map.getCoord_X();
+	coords_mapa_y = map.getCoords_Y();
 	}
 
 void criarUnidades(string tipo, string nome_pop, int x, int y){
@@ -129,5 +132,5 @@ void criarUnidades(string tipo, string nome_pop, int x, int y){
 
 	units.push_back(temp);
 
-	imprimirUnidades(units);
+	imprimirUnidades(units, coords_mapa_x, coords_mapa_y);
 }
