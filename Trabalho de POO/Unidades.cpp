@@ -48,6 +48,10 @@ void Pops_func(Popul pop_a){
 	getchar();
 }
 
+vector<Popul> getPops(){
+	return populacoes;
+}
+
 void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy){
 	int pos_x, pos_y;
 	Consola con;

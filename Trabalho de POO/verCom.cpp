@@ -5,8 +5,11 @@ using namespace std;
 void resetEcra(){
 	Mapa map(largura, altura);
 	Sidebar sidy(map.getTamY());
+	Consola con;
 
 	reimp(map, sidy);
+	con.setTextColor(8);
+	imprimirUnidades(units, coords_mapa_x, coords_mapa_y);
 }
 
 int verificarComandoJogo(){
@@ -77,9 +80,18 @@ int verificarComandoJogo(){
 
 	if (bocados1[0] == "mkgame")
 	{
+		if (bocados1.size() != 4){
+			cout << "Numero de argumentos errado" << endl;
+			getchar();
+			con.clrscr();
+			jogo_decorrer = 0;
+			verificarComandoJogo();
+		}
+
 		criarCampo(stoi(bocados1[1]), stoi(bocados1[2]));
 		largura = stoi(bocados1[1]);
 		altura = stoi(bocados1[2]);
+		jogo_decorrer = 1;
 		verificarComandoJogo();
 	}
 
@@ -95,11 +107,34 @@ int verificarComandoJogo(){
 
 	if (bocados1[0] == "sete")
 	{
-		criarUnidades(bocados1[2],bocados1[1], stoi(bocados1[3]), stoi(bocados1[4]));
+		vector<Popul> pops_existentes = getPops();
+
+		if (pops_existentes.size() == 0){
+			cout << "Nao existem populacoes criadas" << endl;
+			getchar();
+			resetEcra();
+			verificarComandoJogo();
+		}
+
+		for (size_t j = 0; j < pops_existentes.size(); j++){
+			if (bocados1[2] == pops_existentes[j].getNome()){
+				criarUnidades(bocados1[2], bocados1[1], stoi(bocados1[3]), stoi(bocados1[4]));
+			}
+		}
+
+		cout << "A populacao " << bocados1[2] << " nao existe" << endl;
+		getchar();
+		resetEcra();
+		verificarComandoJogo();
 	}
 
 	if (bocados1[0] == "sair"){
 		exit(EXIT_SUCCESS);
+	}
+
+	if (bocados1[0] == "scroll")
+	{
+
 	}
 
 	if (com_int == 0){

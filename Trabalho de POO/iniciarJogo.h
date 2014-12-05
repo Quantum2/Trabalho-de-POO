@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include "Consola.h"
 #include "verCom.h"
 #include "Unidades.h"
@@ -13,6 +14,9 @@
 
 using namespace std;
 
+class Unidade;
+
+extern vector<Unidade> units;
 extern int coords_mapa_x, coords_mapa_y;
 
 class Mapa{
