@@ -98,6 +98,10 @@ int verificarComandoJogo(){
 		criarUnidades(bocados1[2],bocados1[1], stoi(bocados1[3]), stoi(bocados1[4]));
 	}
 
+	if (bocados1[0] == "sair"){
+		exit(EXIT_SUCCESS);
+	}
+
 	if (com_int == 0){
 		cout << "Comando nao encontrado !" << endl;
 		getchar();
