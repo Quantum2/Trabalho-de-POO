@@ -1,6 +1,7 @@
 #include "iniciarJogo.h"
 
 vector<Unidade> units;
+Mapa mapa_global(LINHAS, COLUNAS);
 int coords_mapa_x, coords_mapa_y;
 int posicao_jogo_x, posicao_jogo_y;
 
@@ -8,17 +9,13 @@ Mapa::Mapa(int tamx, int tamy)
 {
 	setSize(tamx, tamy);
 	defTam(LINHAS, COLUNAS);
-	setCoords(0, 0);
+	coords_actuais_x = 0;
+	coords_actuais_y = 0;
 }
 
 void Mapa::setSize(int tam1, int tam2){
 	size_x = tam1;
 	size_y = tam2;
-}
-
-void Mapa::setCoords(int x, int y){
-	coords_x = x;
-	coords_y = y;
 }
 
 void Mapa::defTam(int a, int b)
@@ -61,12 +58,17 @@ int Mapa::getTamY()
 
 int Mapa::getCoord_X(){
 
-	return coords_x;
+	return coords_actuais_x;
 }
 
 int Mapa::getCoords_Y(){
 
-	return coords_y;
+	return coords_actuais_y;
+}
+
+void Mapa::setCoords_XY(int x, int y){
+	coords_actuais_x = x;
+	coords_actuais_y = y;
 }
 
 Sidebar::Sidebar(int colunas){
@@ -111,6 +113,7 @@ void criarCampo(int linhas, int colunas){
 	coords_mapa_x = linhas;
 	coords_mapa_y = colunas;
 
+	mapa_global = map;
 	reimp(map, barra);
 
 	con.gotoxy(0, LINHAS + 4);
@@ -136,5 +139,61 @@ void criarUnidades(string tipo, string nome_pop, int x, int y){
 
 	imprimirUnidades(units, coords_mapa_x, coords_mapa_y);
 
+	verificarComandoJogo();
+}
+
+void scroll(){
+	Consola con;
+	int cor_x, cor_y;
+	
+	while (con.getch() != 'c')
+	{
+		cor_x = mapa_global.getCoord_X();
+		cor_y = mapa_global.getCoords_Y();
+
+		if (con.getch() == con.ESQUERDA){
+			cout << "A mover para a esquerda... Coordenadas : " << cor_x << " " << cor_y << endl;
+
+			if (cor_x > 0){
+				mapa_global.setCoords_XY(mapa_global.getCoord_X() - 1, mapa_global.getCoords_Y());
+			}
+
+			con.getch();
+			resetEcra();
+		}
+		if (con.getch() == con.DIREITA){
+			cout << "A mover para a direita... Coordenadas : " << cor_x << " " << cor_y << endl;
+
+			if (cor_x < mapa_global.getTamX()){
+				mapa_global.setCoords_XY(mapa_global.getCoord_X() + 1, mapa_global.getCoords_Y());
+			}
+
+			con.getch();
+			resetEcra();
+		}
+		if (con.getch() == con.CIMA){
+			cout << "A mover para cima... Coordenadas : " << cor_x << " " << cor_y << endl;
+
+			if (cor_y > 0){
+				mapa_global.setCoords_XY(mapa_global.getCoord_X(), mapa_global.getCoords_Y() - 1);
+			}
+
+			con.getch();
+			resetEcra();
+		}
+		if (con.getch() == con.BAIXO){
+			cout << "A mover para baixo... Coordenadas : " << cor_x << " " << cor_y << endl;
+
+			if (cor_y < mapa_global.getTamY()){
+				mapa_global.setCoords_XY(mapa_global.getCoord_X(), mapa_global.getCoords_Y() + 1);
+			}
+
+			con.getch();
+			resetEcra();
+		}
+	}
+
+	cout << "A mudar para modo comandos" << endl;
+	resetEcra();
 	verificarComandoJogo();
 }

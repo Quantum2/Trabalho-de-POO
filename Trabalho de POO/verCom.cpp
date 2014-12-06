@@ -2,6 +2,8 @@
 
 using namespace std;
 
+int jogo_decorrer;
+
 void resetEcra(){
 	Mapa map(largura, altura);
 	Sidebar sidy(map.getTamY());
@@ -17,10 +19,13 @@ int verificarComandoJogo(){
 	Consola con;
 	int com_int = 0;
 	int args = 0;
-	int jogo_decorrer = 0;
 
 	con.setTextColor(8);
 	vector<string> bocados1;
+
+	if (jogo_decorrer == 0){
+		con.clrscr();
+	}
 	
 	cout << ">>> ";
 	getline(cin, comando);
@@ -117,12 +122,12 @@ int verificarComandoJogo(){
 		}
 
 		for (size_t j = 0; j < pops_existentes.size(); j++){
-			if (bocados1[2] == pops_existentes[j].getNome()){
+			if (bocados1[1] == pops_existentes[j].getNome()){
 				criarUnidades(bocados1[2], bocados1[1], stoi(bocados1[3]), stoi(bocados1[4]));
 			}
 		}
 
-		cout << "A populacao " << bocados1[2] << " nao existe" << endl;
+		cout << "A populacao " << bocados1[1] << " nao existe" << endl;
 		getchar();
 		resetEcra();
 		verificarComandoJogo();
@@ -134,7 +139,15 @@ int verificarComandoJogo(){
 
 	if (bocados1[0] == "scroll")
 	{
-
+		if (jogo_decorrer == 1){
+			scroll();
+		}
+		else{
+			cout << "Nao esta nenhum jogo a decorrer" << endl;
+			getchar();
+			resetEcra();
+			verificarComandoJogo();
+		}
 	}
 
 	if (com_int == 0){

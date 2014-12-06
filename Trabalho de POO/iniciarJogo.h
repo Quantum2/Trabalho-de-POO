@@ -18,6 +18,7 @@ class Unidade;
 
 extern vector<Unidade> units;
 extern int coords_mapa_x, coords_mapa_y;
+//extern Mapa mapa_global;
 
 class Mapa{
 public:
@@ -29,16 +30,16 @@ public:
 	void imprimirMapa();
 	int getCoord_X();
 	int getCoords_Y();
+	void setCoords_XY(int x, int y);
 private:
 	int tam_x;
 	int tam_y;
-	int coords_x; 
-	int coords_y;
+	int coords_actuais_x;
+	int coords_actuais_y;
 	int size_x;
 	int size_y;
 
 	void setSize(int tam1, int tam2);
-	void setCoords(int x, int y);
 	void defTam(int a, int b);
 	Mapa() {}
 };
@@ -64,5 +65,7 @@ void criarCampo(int linhas, int colunas);
 void reimp(Mapa map, Sidebar barra);
 
 void criarUnidades(string tipo, string nome_pop, int x, int y);
+
+void scroll();
 
 #endif
