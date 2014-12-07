@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "Util.h"
+#include "iniciarJogo.h"
 
 using namespace std;
 

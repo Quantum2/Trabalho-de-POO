@@ -18,7 +18,6 @@ class Unidade;
 
 extern vector<Unidade> units;
 extern int coords_mapa_x, coords_mapa_y;
-//extern Mapa mapa_global;
 
 class Mapa{
 public:
@@ -59,6 +58,8 @@ private:
 
 	Sidebar() {}
 };
+
+extern Mapa mapa_global;
 
 void criarCampo(int linhas, int colunas);
 
