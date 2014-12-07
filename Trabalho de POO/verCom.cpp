@@ -156,6 +156,13 @@ int verificarComandoJogo(){
 		verificarComandoJogo();
 	}
 
+	if (bocados1[0] == "sel"){
+		int id;
+		id = stoi(bocados1[1]);
+
+		selecionarUnidades(id);
+	}
+
 	if (bocados1[0] == "sair"){
 		exit(EXIT_SUCCESS);
 	}

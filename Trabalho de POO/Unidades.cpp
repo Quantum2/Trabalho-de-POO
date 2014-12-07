@@ -94,3 +94,7 @@ void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy){
 
 	con.gotoxy(0, LINHAS + 4);
 }
+
+void selecionarUnidades(int id){
+	
+}

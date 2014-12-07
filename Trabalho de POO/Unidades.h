@@ -50,4 +50,6 @@ vector<Popul> getPops();
 
 void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy);
 
+void selecionarUnidades(int id);
+
 #endif
