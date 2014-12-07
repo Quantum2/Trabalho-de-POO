@@ -15,6 +15,7 @@ const static char topo_d = char(191);
 const static char lado = char(179);
 const static char baixo_e = char(192);
 const static char baixo_d = char(217);
+const static char soldado_n = char(167);
 const static char limpar = ' ';
 
 //Variaveis globais

@@ -13,8 +13,9 @@ public:
 	int getCoordX();
 	int getCoordY();
 	string getTipo();
+	int id;
 
-	Unidade(int x, int y, string tipo);
+	Unidade(int x, int y, string tipo, int i);
 private:
 	int coordernada_x;
 	int coordernada_y;

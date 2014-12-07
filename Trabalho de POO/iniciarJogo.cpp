@@ -133,7 +133,7 @@ void reimp(Mapa map, Sidebar barra){
 	}
 
 void criarUnidades(string tipo, string nome_pop, int x, int y){
-	Unidade temp(x, y, tipo);
+	Unidade temp(x, y, tipo, units.size() + 1);
 
 	units.push_back(temp);
 
@@ -145,6 +145,7 @@ void criarUnidades(string tipo, string nome_pop, int x, int y){
 void scroll(){
 	Consola con;
 	int cor_x, cor_y;
+	resetEcra();
 	
 	while (con.getch() != 'c')
 	{

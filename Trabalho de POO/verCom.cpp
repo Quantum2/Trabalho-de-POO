@@ -133,6 +133,29 @@ int verificarComandoJogo(){
 		verificarComandoJogo();
 	}
 
+	if (bocados1[0] == "setu")
+	{
+		vector<Popul> pops_existentes = getPops();
+
+		if (pops_existentes.size() == 0){
+			cout << "Nao existem populacoes criadas" << endl;
+			getchar();
+			resetEcra();
+			verificarComandoJogo();
+		}
+
+		for (size_t j = 0; j < pops_existentes.size(); j++){
+			if (bocados1[1] == pops_existentes[j].getNome()){
+				criarUnidades(bocados1[2], bocados1[1], stoi(bocados1[3]), stoi(bocados1[4]));
+			}
+		}
+
+		cout << "A populacao " << bocados1[1] << " nao existe" << endl;
+		getchar();
+		resetEcra();
+		verificarComandoJogo();
+	}
+
 	if (bocados1[0] == "sair"){
 		exit(EXIT_SUCCESS);
 	}

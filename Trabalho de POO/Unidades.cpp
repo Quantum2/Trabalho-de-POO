@@ -2,8 +2,9 @@
 
 vector<Popul> populacoes;
 
-Unidade::Unidade(int x, int y, string tipo){
+Unidade::Unidade(int x, int y, string tipo, int i){
 	vida = 100;
+	id = i;
 	
 	setCoords(x,y);
 	setTipo(tipo);
