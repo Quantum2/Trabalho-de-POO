@@ -33,13 +33,14 @@ class Popul{
 public:
 	string getNome();
 	int getID();
+	void setID(int ID);
 
 	Popul(string nomes);
 private:
 	string nome;
+	int ID;
 
 	void setNome(string nomes);
-	void setID(int ID);
 	Popul(){}
 };
 

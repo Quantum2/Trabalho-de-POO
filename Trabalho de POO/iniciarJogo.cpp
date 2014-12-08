@@ -198,7 +198,7 @@ void scroll(){
 		cor_y = mapa_global.getCoords_Y();
 
 		if (con.getch() == con.ESQUERDA){
-			cout << "A mover para a esquerda... Coordenadas : " << cor_x << " " << cor_y << endl;
+			cout << "A mover para a esquerda..." << endl;
 
 			if (cor_x > 0){
 				mapa_global.setCoords_XY(mapa_global.getCoord_X() - 1, mapa_global.getCoords_Y());
@@ -208,7 +208,7 @@ void scroll(){
 			resetEcra();
 		}
 		if (con.getch() == con.DIREITA){
-			cout << "A mover para a direita... Coordenadas : " << cor_x << " " << cor_y << endl;
+			cout << "A mover para a direita..." << endl;
 
 			if (cor_x < mapa_global.getTamX()){
 				mapa_global.setCoords_XY(mapa_global.getCoord_X() + 1, mapa_global.getCoords_Y());
@@ -218,7 +218,7 @@ void scroll(){
 			resetEcra();
 		}
 		if (con.getch() == con.CIMA){
-			cout << "A mover para cima... Coordenadas : " << cor_x << " " << cor_y << endl;
+			cout << "A mover para cima..." << endl;
 
 			if (cor_y > 0){
 				mapa_global.setCoords_XY(mapa_global.getCoord_X(), mapa_global.getCoords_Y() - 1);
@@ -228,7 +228,7 @@ void scroll(){
 			resetEcra();
 		}
 		if (con.getch() == con.BAIXO){
-			cout << "A mover para baixo... Coordenadas : " << cor_x << " " << cor_y << endl;
+			cout << "A mover para baixo..." << endl;
 
 			if (cor_y < mapa_global.getTamY()){
 				mapa_global.setCoords_XY(mapa_global.getCoord_X(), mapa_global.getCoords_Y() + 1);

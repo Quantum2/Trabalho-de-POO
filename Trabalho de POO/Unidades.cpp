@@ -69,6 +69,8 @@ void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy){
 	HANDLE hconsola;
 	hconsola = GetStdHandle(STD_OUTPUT_HANDLE);
 
+	con.setTextColor(con.AZUL_CLARO);
+
 	for (size_t i = 0; i < unit.size(); i++){
 		pos_x = unit[i].getCoordX();
 		pos_y = unit[i].getCoordY();
@@ -101,5 +103,6 @@ void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy){
 		WriteConsoleA(hconsola, &limpar, 1, &saida, NULL);
 	}
 
+	con.setTextColor(con.BRANCO);
 	con.gotoxy(0, LINHAS + 4);
 }
