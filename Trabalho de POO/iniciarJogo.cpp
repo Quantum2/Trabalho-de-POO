@@ -1,9 +1,10 @@
-#include "iniciarJogo.h"
+﻿#include "iniciarJogo.h"
 
 vector<Unidade> units;
 Mapa mapa_global(LINHAS, COLUNAS);
 int coords_mapa_x, coords_mapa_y;
 int posicao_jogo_x, posicao_jogo_y;
+int unidade_selecionada, select_on = 0;
 
 Mapa::Mapa(int tamx, int tamy)
 {
@@ -27,8 +28,12 @@ void Mapa::defTam(int a, int b)
 void Mapa::imprimirMapa()
 {
 	int i, j;
+	Consola con;
 
-	cout << endl;
+	con.setTextColor(con.VERDE_CLARO);
+	cout << "Coordenadas actuais :  X=" << mapa_global.getCoord_X() << " Y=" << mapa_global.getCoords_Y() << endl;
+	con.setTextColor(con.ROXO);
+
 	for (j = 0; j <= tam_y + 2; j++){
 		cout << char(205);
 	}
@@ -36,7 +41,9 @@ void Mapa::imprimirMapa()
 	for (i = 0; i <= tam_x; i++){
 		cout << char(186);
 		for (j = 0; j <= tam_y; j++){
-			cout << " ";
+			con.setTextColor(con.CINZENTO);
+			cout << char(176);
+			con.setTextColor(con.ROXO);
 		}
 		cout << char(186) << endl;
 	}
@@ -81,25 +88,63 @@ void Sidebar::setDist(int colunas){
 
 void Sidebar::imprimirSidebar(){
 	Consola cursor;
-	char topo[] = "----------------------\n";								//Mudar para string C++
+	char topo[] = "----------------------\n";							                  	//Mudar para string C++
 	char lateral[] = "|                    |\n";
 	char enter[] = "\n";
+	string temp;
 	DWORD saida;
 	HANDLE hconsola;
 	int i, linhas_sidebar = 24;
 	hconsola = GetStdHandle(STD_OUTPUT_HANDLE);
 	
-	cursor.gotoxy(dist, 2);
 	cursor.setTextColor(cursor.AMARELO_CLARO);
+	cursor.gotoxy(dist, 2);
 
 	WriteConsoleA(hconsola, topo, strlen(topo), &saida, NULL);
 
 	for (i = 0; i <= linhas_sidebar; i++){
 		cursor.gotoxy(dist, 3 + i);
+		cursor.setTextColor(cursor.AMARELO_CLARO);
 		WriteConsoleA(hconsola, lateral, strlen(lateral), &saida, NULL);
 		if (i == linhas_sidebar){
 			cursor.gotoxy(dist, 3 + i);
 			WriteConsoleA(hconsola, topo, strlen(topo), &saida, NULL);
+		}
+
+		if (i == 3 && select_on == 1)                                                       //Informaçao de unidade aqui
+		{
+			cursor.gotoxy(dist + 1, 3 + i);
+			cursor.setTextColor(cursor.VERMELHO_CLARO);
+
+			if (units[unidade_selecionada].getTipo() == "quar"){
+				temp = "Tipo : Quartel";
+
+				for (int x = 4; x < temp.length() / 2; x++){
+					cout << " ";
+				}
+
+				cout << temp << endl;
+			}
+			if (units[unidade_selecionada].getTipo() == "sold"){
+				temp = "Tipo : Soldado";
+				for (int x = 4; x < temp.length() / 2; x++){
+					cout << " ";
+				}
+				cout << temp << endl;
+			}
+		}
+
+		if (i == 4 && select_on == 1)
+		{
+			cursor.gotoxy(dist + 1, 3 + i);
+			cursor.setTextColor(cursor.VERMELHO_CLARO);
+			temp = "Vida: " + to_string(units[unidade_selecionada].getVida());
+
+			for (int x = 3; x < temp.length(); x++){
+				cout << " ";
+			}
+
+			cout << temp << endl;
 		}
 	}
 
@@ -195,6 +240,46 @@ void scroll(){
 	}
 
 	cout << "A mudar para modo comandos" << endl;
+	resetEcra();
+	verificarComandoJogo();
+}
+
+void selecionarUnidades(int id){
+	select_on = 1;
+
+	unidade_selecionada = id - 1;
+
+	if (id < 1){
+		cout << "Insira um ID valido" << endl;
+		select_on = 0;
+	}
+
+	if (id > units.size()){
+		cout << "Essa unidade nao existe" << endl;
+		select_on = 0;
+	}
+
+	if (id == 0)
+		select_on = 0;
+}
+
+void movimentarUnidades(int id, int x, int y, int tipo_movimento){
+	
+	if (id < 1){
+		cout << "Insira um ID valido" << endl;
+		getchar();
+		resetEcra();
+		verificarComandoJogo();
+	}
+	
+	if (tipo_movimento == 1){
+		units[id - 1].mudarCoordenadas(units[id - 1].getCoordX() + x, units[id - 1].getCoordY() + y);
+	}
+
+	if (tipo_movimento == 2){
+		units[id - 1].mudarCoordenadas(x, y);
+	}
+
 	resetEcra();
 	verificarComandoJogo();
 }

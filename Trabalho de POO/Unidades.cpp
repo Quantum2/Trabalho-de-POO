@@ -27,6 +27,15 @@ int Unidade::getCoordY(){
 	return coordernada_y;
 }
 
+int Unidade::getVida(){
+	return vida;
+}
+
+void Unidade::mudarCoordenadas(int cx, int cy){
+	coordernada_x = cx;
+	coordernada_y = cy;
+}
+
 string Unidade::getTipo(){
 	return tipo;
 }
@@ -67,7 +76,7 @@ void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy){
 		pos_x = pos_x - mapa_global.getCoord_X();
 		pos_y = pos_y - mapa_global.getCoords_Y();
 
-		if (unit[i].getTipo() == "quartel"){
+		if (unit[i].getTipo() == "quar"){
 			if (pos_x < COLUNAS && pos_y < LINHAS + 2){
 				con.gotoxy(pos_x, pos_y);
 				WriteConsoleA(hconsola, &topo_e, 1, &saida, NULL);
@@ -78,10 +87,10 @@ void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy){
 			}
 		}
 
-		if (unit[i].getTipo() == "soldado"){
+		if (unit[i].getTipo() == "sold"){
 			if (pos_x < COLUNAS && pos_y < LINHAS + 2){
 				con.gotoxy(pos_x, pos_y);
-				WriteConsoleA(hconsola, &topo_e, 1, &saida, NULL);
+				cout << soldado_n;
 			}
 		}
 	}
@@ -93,8 +102,4 @@ void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy){
 	}
 
 	con.gotoxy(0, LINHAS + 4);
-}
-
-void selecionarUnidades(int id){
-	
 }

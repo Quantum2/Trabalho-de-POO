@@ -13,13 +13,14 @@ class Unidade{
 public:
 	int getCoordX();
 	int getCoordY();
+	int getVida();
 	string getTipo();
+	void mudarCoordenadas(int cx, int cy);
 	int id;
 
 	Unidade(int x, int y, string tipo, int i);
 private:
-	int coordernada_x;
-	int coordernada_y;
+	int coordernada_x, coordernada_y;
 	int vida;
 	string tipo;
 
@@ -49,7 +50,5 @@ void Pops_func(Popul pop_a);
 vector<Popul> getPops();
 
 void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy);
-
-void selecionarUnidades(int id);
 
 #endif

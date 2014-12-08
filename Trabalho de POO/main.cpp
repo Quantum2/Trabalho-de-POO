@@ -22,4 +22,4 @@ int main(int argc, char **argv){
 	verificarComandoJogo();
 
 	return 0;
-	}
+}

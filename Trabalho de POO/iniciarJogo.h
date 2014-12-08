@@ -69,4 +69,8 @@ void criarUnidades(string tipo, string nome_pop, int x, int y);
 
 void scroll();
 
+void selecionarUnidades(int id);
+
+void movimentarUnidades(int id, int x, int y, int tipo_movimento);
+
 #endif
