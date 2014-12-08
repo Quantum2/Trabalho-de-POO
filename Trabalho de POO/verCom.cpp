@@ -358,10 +358,44 @@ int verificarComandoJogo(vector<string> vec, int linha){
 		id = stoi(bocados1[1]);
 
 		selecionarUnidades(id);
+		resetEcra();
+		verificarComandoJogo();
+	}
+
+	if (bocados1[0] == "go"){
+		if (bocados1.size() != 5){
+			cout << "Numero de argumentos errado" << endl;
+			getchar();
+			resetEcra();
+			verificarComandoJogo();
+		}
+
+		movimentarUnidades(stoi(bocados1[1]), stoi(bocados1[2]), stoi(bocados1[3]), 1);
+	}
+
+	if (bocados1[0] == "goto"){
+		if (bocados1.size() != 5){
+			cout << "Numero de argumentos errado" << endl;
+			getchar();
+			resetEcra();
+			verificarComandoJogo();
+		}
+
+		movimentarUnidades(stoi(bocados1[1]), stoi(bocados1[2]), stoi(bocados1[3]), 2);
 	}
 
 	if (bocados1[0] == "sair"){
 		exit(EXIT_SUCCESS);
+	}
+
+	if (bocados1[0] == "next"){
+
+		if (bocados1.size() != 1)
+			for (int next = 0; next < stoi(bocados1[1]); next++){
+				resetEcra();
+			}
+		resetEcra();
+		verificarComandoJogo();
 	}
 
 	if (bocados1[0] == "scroll")
