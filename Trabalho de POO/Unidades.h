@@ -29,6 +29,35 @@ private:
 	Unidade(){}
 };
 
+class Edificio{
+public:
+	int getCoordX();
+	int getCoordY();
+	int getVida();
+	string getTipo();
+	void mudarCoordenadas(int cx, int cy);
+	int id;
+
+	Edificio(int x, int y, string tip, int i);
+private:
+	int coordernada_x, coordernada_y;
+	int vida;
+	string tipo;
+	Edificio(){}
+};
+
+class Castelo : public Edificio
+{
+public:
+	Castelo(int xx, int yy, int ii)
+		: Edificio(xx, yy, "castelo", ii){};
+};
+
+class Soldado : public Unidade{
+public:
+
+};
+
 class Popul{
 public:
 	string getNome();
@@ -51,5 +80,7 @@ void Pops_func(Popul pop_a);
 vector<Popul> getPops();
 
 void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy);
+
+void imprimirEdificios(vector<Edificio> unit, int mapa_coordx, int mapa_coordy);
 
 #endif

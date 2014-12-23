@@ -113,7 +113,7 @@ int verificarComandoJogo(){
 
 		for (size_t j = 0; j < pops_existentes.size(); j++){
 			if (bocados1[1] == pops_existentes[j].getNome()){
-				criarUnidades(bocados1[2], bocados1[1], stoi(bocados1[3]), stoi(bocados1[4]));
+				criarEdi(bocados1[2], bocados1[1], stoi(bocados1[3]), stoi(bocados1[4]));
 			}
 		}
 

@@ -16,8 +16,6 @@ using namespace std;
 
 class Unidade;
 
-//extern int coords_mapa_x, coords_mapa_y;                               Usado para debugging apenas
-
 class Mapa{
 public:
 	int getTamX();
@@ -67,6 +65,8 @@ void resetEcra();
 void reimp(Mapa map, Sidebar barra);
 
 void criarUnidades(string tipo, string nome_pop, int x, int y);
+
+void criarEdi(string tipo, string nome_pop, int x, int y);
 
 void scroll();
 
