@@ -10,6 +10,15 @@ Unidade::Unidade(int x, int y, string tipo, int i){
 	setTipo(tipo);
 }
 
+Edificio::Edificio(int x, int y, string tip, int i){
+	vida = 100;
+	id = i;
+
+	coordernada_x = x;
+	coordernada_y = y;
+	tipo = tip;
+}
+
 void Unidade::setCoords(int x, int y){
 	coordernada_x = x;
 	coordernada_y = y;
@@ -23,7 +32,15 @@ int Unidade::getCoordX(){
 	return coordernada_x;
 }
 
+int Edificio::getCoordX(){
+	return coordernada_x;
+}
+
 int Unidade::getCoordY(){
+	return coordernada_y;
+}
+
+int Edificio::getCoordY(){
 	return coordernada_y;
 }
 
@@ -37,6 +54,10 @@ void Unidade::mudarCoordenadas(int cx, int cy){
 }
 
 string Unidade::getTipo(){
+	return tipo;
+}
+
+string Edificio::getTipo(){
 	return tipo;
 }
 
@@ -99,6 +120,51 @@ void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy){
 
 	con.gotoxy(0, LINHAS + 4);
 	
+	for (int j = 0; j < 50; j++){
+		WriteConsoleA(hconsola, &limpar, 1, &saida, NULL);
+	}
+
+	con.setTextColor(con.BRANCO);
+	con.gotoxy(0, LINHAS + 4);
+}
+
+void imprimirEdificios(vector<Edificio> unit, int mapa_coordx, int mapa_coordy){
+	int pos_x, pos_y;
+	Consola con;
+	DWORD saida;
+	HANDLE hconsola;
+	hconsola = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	con.setTextColor(con.AZUL_CLARO);
+
+	for (size_t i = 0; i < unit.size(); i++){
+		pos_x = unit[i].getCoordX();
+		pos_y = unit[i].getCoordY();
+
+		pos_x = pos_x - mapa_global.getCoord_X();
+		pos_y = pos_y - mapa_global.getCoords_Y();
+
+		if (unit[i].getTipo() == "quar"){
+			if (pos_x < COLUNAS && pos_y < LINHAS + 2){
+				con.gotoxy(pos_x, pos_y);
+				WriteConsoleA(hconsola, &topo_e, 1, &saida, NULL);
+				WriteConsoleA(hconsola, &topo_d, 1, &saida, NULL);
+				con.gotoxy(pos_x, pos_y + 1);
+				WriteConsoleA(hconsola, &baixo_e, 1, &saida, NULL);
+				WriteConsoleA(hconsola, &baixo_d, 1, &saida, NULL);
+			}
+		}
+
+		if (unit[i].getTipo() == "sold"){
+			if (pos_x < COLUNAS && pos_y < LINHAS + 2){
+				con.gotoxy(pos_x, pos_y);
+				cout << soldado_n;
+			}
+		}
+	}
+
+	con.gotoxy(0, LINHAS + 4);
+
 	for (int j = 0; j < 50; j++){
 		WriteConsoleA(hconsola, &limpar, 1, &saida, NULL);
 	}
