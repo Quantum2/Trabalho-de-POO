@@ -283,3 +283,13 @@ void movimentarUnidades(int id, int x, int y, int tipo_movimento){
 	resetEcra();
 	verificarComandoJogo();
 }
+
+void resetEcra(){
+	Mapa map(largura, altura);
+	Sidebar sidy(map.getTamY());
+	Consola con;
+
+	reimp(map, sidy);
+	con.setTextColor(8);
+	imprimirUnidades(units, coords_mapa_x, coords_mapa_y);
+}

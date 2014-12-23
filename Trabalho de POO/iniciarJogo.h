@@ -16,8 +16,7 @@ using namespace std;
 
 class Unidade;
 
-extern vector<Unidade> units;
-extern int coords_mapa_x, coords_mapa_y;
+//extern int coords_mapa_x, coords_mapa_y;                               Usado para debugging apenas
 
 class Mapa{
 public:
@@ -62,6 +61,8 @@ private:
 extern Mapa mapa_global;
 
 void criarCampo(int linhas, int colunas);
+
+void resetEcra();
 
 void reimp(Mapa map, Sidebar barra);
 

@@ -17,8 +17,6 @@
 
 using namespace std;
 
-void resetEcra();
-
 int verificarComandoJogo(vector<string> vec, int linha);
 
 int verificarComandoJogo();
