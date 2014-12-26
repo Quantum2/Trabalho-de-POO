@@ -42,6 +42,7 @@ public:
 private:
 	int coordernada_x, coordernada_y;
 	int vida;
+	int conserva;
 	string tipo;
 	Edificio(){}
 };

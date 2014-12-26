@@ -2,6 +2,7 @@
 
 vector<Unidade> units;
 vector<Edificio> barracos;
+
 Mapa mapa_global(LINHAS, COLUNAS);
 int coords_mapa_x, coords_mapa_y;
 int posicao_jogo_x, posicao_jogo_y;

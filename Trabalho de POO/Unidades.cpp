@@ -99,21 +99,38 @@ void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy){
 		pos_x = pos_x - mapa_global.getCoord_X();
 		pos_y = pos_y - mapa_global.getCoords_Y();
 
-		if (unit[i].getTipo() == "quar"){
-			if (pos_x < COLUNAS && pos_y < LINHAS + 2){
-				con.gotoxy(pos_x, pos_y);
-				WriteConsoleA(hconsola, &topo_e, 1, &saida, NULL);
-				WriteConsoleA(hconsola, &topo_d, 1, &saida, NULL);
-				con.gotoxy(pos_x, pos_y + 1);
-				WriteConsoleA(hconsola, &baixo_e, 1, &saida, NULL);
-				WriteConsoleA(hconsola, &baixo_d, 1, &saida, NULL);
-			}
-		}
-
 		if (unit[i].getTipo() == "sold"){
 			if (pos_x < COLUNAS && pos_y < LINHAS + 2){
 				con.gotoxy(pos_x, pos_y);
 				cout << soldado_n;
+			}
+		}
+
+		if (unit[i].getTipo() == "camp"){
+			if (pos_x < COLUNAS && pos_y < LINHAS + 2){
+				con.gotoxy(pos_x, pos_y);
+				cout << campones;
+			}
+		}
+
+		if (unit[i].getTipo() == "caval"){
+			if (pos_x < COLUNAS && pos_y < LINHAS + 2){
+				con.gotoxy(pos_x, pos_y);
+				cout << cavaleiro;
+			}
+		}
+
+		if (unit[i].getTipo() == "camp_caval"){
+			if (pos_x < COLUNAS && pos_y < LINHAS + 2){
+				con.gotoxy(pos_x, pos_y);
+				cout << camp_caval;
+			}
+		}
+
+		if (unit[i].getTipo() == "catap"){
+			if (pos_x < COLUNAS && pos_y < LINHAS + 2){
+				con.gotoxy(pos_x, pos_y);
+				cout << catapulta;
 			}
 		}
 	}
@@ -155,10 +172,24 @@ void imprimirEdificios(vector<Edificio> unit, int mapa_coordx, int mapa_coordy){
 			}
 		}
 
-		if (unit[i].getTipo() == "sold"){
+		if (unit[i].getTipo() == "esta"){
 			if (pos_x < COLUNAS && pos_y < LINHAS + 2){
 				con.gotoxy(pos_x, pos_y);
-				cout << soldado_n;
+				cout << char(234);
+			}
+		}
+
+		if (unit[i].getTipo() == "quinta"){
+			if (pos_x < COLUNAS && pos_y < LINHAS + 2){
+				con.gotoxy(pos_x, pos_y);
+				cout << char(227);
+			}
+		}
+
+		if (unit[i].getTipo() == "cast"){
+			if (pos_x < COLUNAS && pos_y < LINHAS + 2){
+				con.gotoxy(pos_x, pos_y);
+				cout << char(206);
 			}
 		}
 	}

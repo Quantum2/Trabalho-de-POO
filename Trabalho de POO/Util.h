@@ -17,6 +17,10 @@ const static char baixo_e = char(192);
 const static char baixo_d = char(217);
 const static char soldado_n = '+';
 const static char limpar = ' ';
+const static char campones = 'ç';
+const static char cavaleiro = char(128);
+const static char camp_caval = char(216);
+const static char catapulta = char(204);
 
 //Variaveis globais
 
