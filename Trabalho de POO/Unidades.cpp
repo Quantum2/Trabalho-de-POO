@@ -2,17 +2,19 @@
 
 vector<Popul> populacoes;
 
-Unidade::Unidade(int x, int y, string tipo, int i){
+Unidade::Unidade(int x, int y, string tipo, int i, int pid){
 	vida = 100;
 	id = i;
+	id_pop = pid;
 	
 	setCoords(x,y);
 	setTipo(tipo);
 }
 
-Edificio::Edificio(int x, int y, string tip, int i){
+Edificio::Edificio(int x, int y, string tip, int i, int pid){
 	vida = 100;
 	id = i;
+	id_pop = pid;
 
 	coordernada_x = x;
 	coordernada_y = y;
@@ -74,9 +76,14 @@ string Popul::getNome(){
 }
 
 void Pops_func(Popul pop_a){
-	populacoes.push_back(pop_a);
-	cout << "Populacao " << pop_a.getNome() << " adicionada" << endl;
-	getchar();
+	if (populacoes.size() <= 10){
+		populacoes.push_back(pop_a);
+		cout << "Populacao " << pop_a.getNome() << " adicionada" << endl;
+		getchar();
+	}
+	if (populacoes.size() > 10){
+		cout << "Quantidade maxima de populacoes atingida" << endl;
+	}
 }
 
 vector<Popul> getPops(){
@@ -90,7 +97,7 @@ void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy){
 	HANDLE hconsola;
 	hconsola = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	con.setTextColor(con.AZUL_CLARO);
+	//con.setTextColor(con.AZUL_CLARO);
 
 	for (size_t i = 0; i < unit.size(); i++){
 		pos_x = unit[i].getCoordX();
@@ -98,6 +105,8 @@ void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy){
 
 		pos_x = pos_x - mapa_global.getCoord_X();
 		pos_y = pos_y - mapa_global.getCoords_Y();
+
+		con.setTextColor(unit[i].id_pop + 1);
 
 		if (unit[i].getTipo() == "sold"){
 			if (pos_x < COLUNAS && pos_y < LINHAS + 2){
@@ -152,7 +161,7 @@ void imprimirEdificios(vector<Edificio> unit, int mapa_coordx, int mapa_coordy){
 	HANDLE hconsola;
 	hconsola = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	con.setTextColor(con.AZUL_CLARO);
+	//con.setTextColor(con.AZUL_CLARO);
 
 	for (size_t i = 0; i < unit.size(); i++){
 		pos_x = unit[i].getCoordX();
@@ -160,6 +169,8 @@ void imprimirEdificios(vector<Edificio> unit, int mapa_coordx, int mapa_coordy){
 
 		pos_x = pos_x - mapa_global.getCoord_X();
 		pos_y = pos_y - mapa_global.getCoords_Y();
+
+		con.setTextColor(unit[i].id_pop + 1);
 
 		if (unit[i].getTipo() == "quar"){
 			if (pos_x < COLUNAS && pos_y < LINHAS + 2){

@@ -179,8 +179,8 @@ void reimp(Mapa map, Sidebar barra){
 
 	}
 
-void criarUnidades(string tipo, string nome_pop, int x, int y){
-	Unidade temp(x, y, tipo, units.size() + 1);
+void criarUnidades(string tipo, string nome_pop, int x, int y, int pop_id){
+	Unidade temp(x, y, tipo, units.size() + 1, pop_id);
 
 	units.push_back(temp);
 
@@ -189,8 +189,8 @@ void criarUnidades(string tipo, string nome_pop, int x, int y){
 	verificarComandoJogo();
 }
 
-void criarEdi(string tipo, string nome_pop, int x, int y){
-	Edificio temp(x, y, tipo, units.size() + 1);
+void criarEdi(string tipo, string nome_pop, int x, int y, int pop_id){
+	Edificio temp(x, y, tipo, units.size() + 1, pop_id);
 
 	barracos.push_back(temp);
 

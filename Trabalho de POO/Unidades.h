@@ -17,8 +17,9 @@ public:
 	string getTipo();
 	void mudarCoordenadas(int cx, int cy);
 	int id;
+	int id_pop;
 
-	Unidade(int x, int y, string tipo, int i);
+	Unidade(int x, int y, string tipo, int i, int pid);
 private:
 	int coordernada_x, coordernada_y;
 	int vida;
@@ -37,7 +38,9 @@ public:
 	string getTipo();
 	void mudarCoordenadas(int cx, int cy);
 	int id;
+	int id_pop;
 
+	Edificio(int x, int y, string tip, int i, int pid);
 	Edificio(int x, int y, string tip, int i);
 private:
 	int coordernada_x, coordernada_y;
