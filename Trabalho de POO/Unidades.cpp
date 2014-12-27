@@ -81,7 +81,6 @@ void Pops_func(Popul pop_a){
 		cout << "Populacao " << pop_a.getNome() << " adicionada" << endl;
 		getchar();
 	}
-
 	if (populacoes.size() > 10){
 		cout << "Quantidade maxima de populacoes atingida" << endl;
 	}
