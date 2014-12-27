@@ -343,7 +343,11 @@ void movimentarUnidades(int id, int x, int y, int tipo_movimento){
 	}
 
 	if (tipo_movimento == 2){
-		units[id - 1].mudarCoordenadas(x, y);
+		do{
+			units[id - 1].mudarCoordenadas(units[id - 1].getCoordX() + 1, units[id - 1].getCoordY() + 1);
+			imprimirEdificios(barracos, coords_mapa_x, coords_mapa_y);
+			imprimirUnidades(units, coords_mapa_x, coords_mapa_y);
+		} while (units[id - 1].getCoordX() != x && units[id - 1].getCoordY() != y);
 	}
 
 	resetEcra();
