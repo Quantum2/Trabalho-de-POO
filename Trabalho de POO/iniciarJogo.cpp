@@ -126,9 +126,63 @@ void Sidebar::imprimirSidebar(){
 				}
 
 				cout << temp << endl;
+
 			}
+
+
+			if (units[unidade_selecionada].getTipo() == "esta"){
+				temp = "Tipo : Estabulo";
+				
+				for (int x = 4; x < temp.length() / 2; x++){
+					cout << " ";
+				}
+				cout << temp << endl;
+			}
+
+			if (units[unidade_selecionada].getTipo() == "quinta"){
+				temp = "Tipo : Quinta";
+				
+				for (int x = 4; x < temp.length() / 2; x++){
+					cout << " ";
+				}
+				cout << temp << endl;
+			}
+
+			if (units[unidade_selecionada].getTipo() == "cast"){
+				temp = "Tipo : Castelo";
+				
+				for (int x = 4; x < temp.length() / 2; x++){
+					cout << " ";
+				}
+				cout << temp << endl;
+			}
+
 			if (units[unidade_selecionada].getTipo() == "sold"){
 				temp = "Tipo : Soldado";
+				for (int x = 4; x < temp.length() / 2; x++){
+					cout << " ";
+				}
+				cout << temp << endl;
+			}
+
+			if (units[unidade_selecionada].getTipo() == "camp"){
+				temp = "Tipo : Campones";
+				for (int x = 4; x < temp.length() / 2; x++){
+					cout << " ";
+				}
+				cout << temp << endl;
+			}
+
+			if (units[unidade_selecionada].getTipo() == "caval"){
+				temp = "Tipo : Cavaleiro";
+				for (int x = 4; x < temp.length() / 2; x++){
+					cout << " ";
+				}
+				cout << temp << endl;
+			}
+
+			if (units[unidade_selecionada].getTipo() == "camp_caval"){
+				temp = "Tipo : Campones a Cavalo";
 				for (int x = 4; x < temp.length() / 2; x++){
 					cout << " ";
 				}
