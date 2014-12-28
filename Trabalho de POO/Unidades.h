@@ -9,7 +9,16 @@
 
 using namespace std;
 
-class Unidade{
+class Base{
+public:
+	int getIDGeral();
+	void setIDGeral(int pid);
+	Base(){};
+private:
+	int id_geral;
+};
+
+class Unidade : public Base{
 public:
 	int getCoordX();
 	int getCoordY();
@@ -30,7 +39,7 @@ private:
 	Unidade(){}
 };
 
-class Edificio{
+class Edificio : public Base{
 public:
 	int getCoordX();
 	int getCoordY();
@@ -48,18 +57,6 @@ private:
 	int conserva;
 	string tipo;
 	Edificio(){}
-};
-
-class Castelo : public Edificio
-{
-public:
-	Castelo(int xx, int yy, int ii)
-		: Edificio(xx, yy, "castelo", ii){};
-};
-
-class Soldado : public Unidade{
-public:
-
 };
 
 class Popul{

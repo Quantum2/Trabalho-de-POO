@@ -94,7 +94,7 @@ void Sidebar::imprimirSidebar(){
 	char topo[] = "----------------------\n";							                  	//Mudar para string C++
 	char lateral[] = "|                    |\n";
 	char enter[] = "\n";
-	string temp;
+	string temp, tipo;
 	DWORD saida;
 	HANDLE hconsola;
 	int i, linhas_sidebar = 24;
@@ -114,10 +114,26 @@ void Sidebar::imprimirSidebar(){
 			WriteConsoleA(hconsola, topo, strlen(topo), &saida, NULL);
 		}
 
-		if (i == 3 && select_on == 1)                                                       //Informaçao de unidade aqui
+		if (i == 3 && select_on == 1)                                                               //Informaçao de unidade aqui
 		{
 			cursor.gotoxy(dist + 1, 3 + i);
 			cursor.setTextColor(cursor.VERMELHO_CLARO);
+
+			for (int x = 0; x <= units.size(); x++){
+				if (units.size() != 0){
+					if (units[i].getIDGeral() == unidade_selecionada){
+
+						break;
+					}
+				}
+
+				if (barracos.size() != 0){
+					if (barracos[i].getIDGeral() == unidade_selecionada){
+
+						break;
+					}
+				}
+			}
 
 			if (units[unidade_selecionada].getTipo() == "quar"){
 				temp = "Tipo : Quartel";
@@ -127,9 +143,7 @@ void Sidebar::imprimirSidebar(){
 				}
 
 				cout << temp << endl;
-
 			}
-
 
 			if (units[unidade_selecionada].getTipo() == "esta"){
 				temp = "Tipo : Estabulo";
@@ -236,7 +250,12 @@ void reimp(Mapa map, Sidebar barra){
 
 void criarUnidades(string tipo, string nome_pop, int x, int y, int pop_id){
 	Unidade temp(x, y, tipo, units.size() + 1, pop_id);
+	int temp_id;
 
+	temp_id = units.size() + barracos.size();
+	temp_id = temp_id + 1;
+
+	temp.setIDGeral(temp_id);
 	units.push_back(temp);
 
 	imprimirUnidades(units, coords_mapa_x, coords_mapa_y);
@@ -246,6 +265,10 @@ void criarUnidades(string tipo, string nome_pop, int x, int y, int pop_id){
 
 void criarEdi(string tipo, string nome_pop, int x, int y, int pop_id){
 	Edificio temp(x, y, tipo, units.size() + 1, pop_id);
+	int temp_id;
+
+	temp_id = units.size() + barracos.size();
+	temp_id = temp_id + 1;
 
 	barracos.push_back(temp);
 
@@ -314,14 +337,14 @@ void scroll(){
 void selecionarUnidades(int id){
 	select_on = 1;
 
-	unidade_selecionada = id - 1;
+	unidade_selecionada = id;
 
 	if (id < 1){
 		cout << "Insira um ID valido" << endl;
 		select_on = 0;
 	}
 
-	if (id > units.size()){
+	if (id > units.size() + barracos.size()){
 		cout << "Essa unidade nao existe" << endl;
 		select_on = 0;
 	}
@@ -372,7 +395,7 @@ void colorFonteRecursos(string tipo, int x, int y){
 }
 
 void ia(int turnos){
-
+	//A fazer
 }
 
 void resetEcra(){

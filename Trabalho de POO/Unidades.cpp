@@ -2,6 +2,14 @@
 
 vector<Popul> populacoes;
 
+void Base::setIDGeral(int pid){
+	id_geral = pid;
+}
+
+int Base::getIDGeral(){
+	return id_geral;
+}
+
 Unidade::Unidade(int x, int y, string tipo, int i, int pid){
 	vida = 100;
 	id = i;
