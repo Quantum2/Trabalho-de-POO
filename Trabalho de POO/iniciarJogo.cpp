@@ -371,6 +371,10 @@ void colorFonteRecursos(string tipo, int x, int y){
 	resetEcra();
 }
 
+void ia(int turnos){
+
+}
+
 void resetEcra(){
 	Mapa map(largura, altura);
 	Sidebar sidy(map.getTamY());

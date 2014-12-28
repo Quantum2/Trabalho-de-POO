@@ -259,6 +259,14 @@ void imprimirRecursos(vector<Recursos> recs, int mapa_coordx, int mapa_coordy){
 			con.gotoxy(recs[i].getPosX(), recs[i].getPosY());
 			cout << 'F';
 		}
+		if (recs[i].getTipo() == "Mina"){
+			con.gotoxy(recs[i].getPosX(), recs[i].getPosY());
+			cout << 'M';
+		}
+		if (recs[i].getTipo() == "Pedreira"){
+			con.gotoxy(recs[i].getPosX(), recs[i].getPosY());
+			cout << 'P';
+		}
 	}
 
 	con.gotoxy(0, LINHAS + 4);
