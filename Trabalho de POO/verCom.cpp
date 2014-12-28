@@ -100,6 +100,11 @@ int verificarComandoJogo(){
 		verificarComandoJogo();
 	}
 
+	if (bocados1[0] == "setf"){
+		colorFonteRecursos(bocados1[1], stoi(bocados1[2]), stoi(bocados1[3]));
+		verificarComandoJogo();
+	}
+
 	if (bocados1[0] == "sete")
 	{
 		vector<Popul> pops_existentes = getPops();

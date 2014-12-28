@@ -74,4 +74,6 @@ void selecionarUnidades(int id);
 
 void movimentarUnidades(int id, int x, int y, int tipo_movimento);
 
+void colorFonteRecursos(string tipo, int x, int y);
+
 #endif

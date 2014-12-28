@@ -77,7 +77,19 @@ private:
 	Popul(){}
 };
 
-class Recursos{};
+class Recursos{
+public:
+	int res_restante;
+	int getPosX();
+	int getPosY();
+	int getID();
+	string getTipo();
+	Recursos(string tipo_recurso, int x, int y, int id_inicial);
+private:
+	int ID;
+	string tipo;
+	int pos_x, pos_y;
+};
 
 void Pops_func(Popul pop_a);
 
@@ -86,5 +98,7 @@ vector<Popul> getPops();
 void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy);
 
 void imprimirEdificios(vector<Edificio> unit, int mapa_coordx, int mapa_coordy);
+
+void imprimirRecursos(vector<Recursos> recs, int mapa_coordx, int mapa_coordy);
 
 #endif

@@ -2,6 +2,7 @@
 
 vector<Unidade> units;
 vector<Edificio> barracos;
+vector<Recursos> fontes_recursos;
 
 Mapa mapa_global(LINHAS, COLUNAS);
 int coords_mapa_x, coords_mapa_y;
@@ -350,6 +351,26 @@ void movimentarUnidades(int id, int x, int y, int tipo_movimento){
 	verificarComandoJogo();
 }
 
+void colorFonteRecursos(string tipo, int x, int y){
+	Consola con;
+
+	con.gotoxy(x, y);
+	if (tipo == "flo"){
+		Recursos temp("Floresta", x, y, fontes_recursos.size() + 1);
+		fontes_recursos.push_back(temp);
+	}
+	if (tipo == "min"){
+		Recursos temp("Mina", x, y, fontes_recursos.size() + 1);
+		fontes_recursos.push_back(temp);
+	}
+	if (tipo == "ped"){
+		Recursos temp("Pedreira", x, y, fontes_recursos.size() + 1);
+		fontes_recursos.push_back(temp);
+	}
+
+	resetEcra();
+}
+
 void resetEcra(){
 	Mapa map(largura, altura);
 	Sidebar sidy(map.getTamY());
@@ -358,4 +379,6 @@ void resetEcra(){
 	reimp(map, sidy);
 	con.setTextColor(8);
 	imprimirUnidades(units, coords_mapa_x, coords_mapa_y);
+	imprimirEdificios(barracos, coords_mapa_x, coords_mapa_y);
+	imprimirRecursos(fontes_recursos, coords_mapa_x, coords_mapa_y);
 }

@@ -75,6 +75,30 @@ string Popul::getNome(){
 	return nome;
 }
 
+Recursos::Recursos(string tipo_recurso, int x, int y, int id_inicial){
+	tipo = tipo_recurso;
+	pos_x = x;
+	pos_y = y;
+	ID = id_inicial;
+	res_restante = 100;
+}
+
+int Recursos::getPosX(){
+	return pos_x;
+}
+
+int Recursos::getPosY(){
+	return pos_y;
+}
+
+int Recursos::getID(){
+	return ID;
+}
+
+string Recursos::getTipo(){
+	return tipo;
+}
+
 void Pops_func(Popul pop_a){
 	if (populacoes.size() <= 10){
 		populacoes.push_back(pop_a);
@@ -202,6 +226,38 @@ void imprimirEdificios(vector<Edificio> unit, int mapa_coordx, int mapa_coordy){
 				con.gotoxy(pos_x, pos_y);
 				cout << char(206);
 			}
+		}
+	}
+
+	con.gotoxy(0, LINHAS + 4);
+
+	for (int j = 0; j < 50; j++){
+		WriteConsoleA(hconsola, &limpar, 1, &saida, NULL);
+	}
+
+	con.setTextColor(con.BRANCO);
+	con.gotoxy(0, LINHAS + 4);
+}
+
+void imprimirRecursos(vector<Recursos> recs, int mapa_coordx, int mapa_coordy){
+	int pos_x, pos_y;
+	Consola con;
+	DWORD saida;
+	HANDLE hconsola;
+	hconsola = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	con.setTextColor(con.AZUL_CLARO);
+
+	for (size_t i = 0; i < recs.size(); i++){
+		pos_x = recs[i].getPosX();
+		pos_y = recs[i].getPosY();
+
+		pos_x = pos_x - mapa_global.getCoord_X();
+		pos_y = pos_y - mapa_global.getCoords_Y();
+
+		if (recs[i].getTipo() == "Floresta"){
+			con.gotoxy(recs[i].getPosX(), recs[i].getPosY());
+			cout << 'F';
 		}
 	}
 
