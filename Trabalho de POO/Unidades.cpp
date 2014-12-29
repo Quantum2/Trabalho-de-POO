@@ -58,6 +58,10 @@ int Unidade::getVida(){
 	return vida;
 }
 
+int Edificio::getVida(){
+	return vida;
+}
+
 void Unidade::mudarCoordenadas(int cx, int cy){
 	coordernada_x = cx;
 	coordernada_y = cy;

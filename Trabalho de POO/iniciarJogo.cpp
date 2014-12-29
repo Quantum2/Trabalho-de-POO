@@ -97,7 +97,7 @@ void Sidebar::imprimirSidebar(){
 	string temp, tipo;
 	DWORD saida;
 	HANDLE hconsola;
-	int i, linhas_sidebar = 24;
+	int i, linhas_sidebar = 24, x;
 	hconsola = GetStdHandle(STD_OUTPUT_HANDLE);
 	
 	cursor.setTextColor(cursor.AMARELO_CLARO);
@@ -119,97 +119,109 @@ void Sidebar::imprimirSidebar(){
 			cursor.gotoxy(dist + 1, 3 + i);
 			cursor.setTextColor(cursor.VERMELHO_CLARO);
 
-			for (int x = 0; x <= units.size(); x++){
-				if (units.size() != 0){
-					if (units[i].getIDGeral() == unidade_selecionada){
+			for (x = 0; x < units.size(); x++){
+				if (units.size() > 0){
+					if (units[x].getIDGeral() == unidade_selecionada){
+
+						if (units[x].getTipo() == "sold"){
+							temp = "Tipo : Soldado";
+							for (int x = 4; x < temp.length() / 2; x++){
+								cout << " ";
+							}
+							cout << temp << endl;
+						}
+
+						if (units[x].getTipo() == "camp"){
+							temp = "Tipo : Campones";
+							for (int x = 4; x < temp.length() / 2; x++){
+								cout << " ";
+							}
+							cout << temp << endl;
+						}
+
+						if (units[x].getTipo() == "caval"){
+							temp = "Tipo : Cavaleiro";
+							for (int x = 4; x < temp.length() / 2; x++){
+								cout << " ";
+							}
+							cout << temp << endl;
+						}
+
+						if (units[x].getTipo() == "camp_caval"){
+							temp = "Tipo : Campones a Cavalo";
+							for (int x = 4; x < temp.length() / 2; x++){
+								cout << " ";
+							}
+							cout << temp << endl;
+						}
 
 						break;
 					}
 				}
+			}
 
-				if (barracos.size() != 0){
-					if (barracos[i].getIDGeral() == unidade_selecionada){
+			for (x = 0; x < barracos.size(); x++){
+				if (barracos.size() > 0){
+					if (barracos[x].getIDGeral() == unidade_selecionada){
+
+						if (barracos[x].getTipo() == "quar"){
+							temp = "Tipo : Quartel";
+
+							for (int x = 4; x < temp.length() / 2; x++){
+								cout << " ";
+							}
+
+							cout << temp << endl;
+						}
+
+						if (barracos[x].getTipo() == "esta"){
+							temp = "Tipo : Estabulo";
+
+							for (int x = 4; x < temp.length() / 2; x++){
+								cout << " ";
+							}
+							cout << temp << endl;
+						}
+
+						if (barracos[x].getTipo() == "quinta"){
+							temp = "Tipo : Quinta";
+
+							for (int x = 4; x < temp.length() / 2; x++){
+								cout << " ";
+							}
+							cout << temp << endl;
+						}
+
+						if (barracos[x].getTipo() == "cast"){
+							temp = "Tipo : Castelo";
+
+							for (int x = 4; x < temp.length() / 2; x++){
+								cout << " ";
+							}
+							cout << temp << endl;
+						}
+
+						cursor.gotoxy(dist + 1, 3 + i);
+						cursor.setTextColor(cursor.VERMELHO_CLARO);
+						temp = "Vida: " + to_string(barracos[x].getVida());
+
+						for (int x = 3; x < temp.length(); x++){
+							cout << " ";
+						}
+
+						cout << temp << endl;
 
 						break;
 					}
 				}
 			}
-
-			if (units[unidade_selecionada].getTipo() == "quar"){
-				temp = "Tipo : Quartel";
-
-				for (int x = 4; x < temp.length() / 2; x++){
-					cout << " ";
-				}
-
-				cout << temp << endl;
-			}
-
-			if (units[unidade_selecionada].getTipo() == "esta"){
-				temp = "Tipo : Estabulo";
-				
-				for (int x = 4; x < temp.length() / 2; x++){
-					cout << " ";
-				}
-				cout << temp << endl;
-			}
-
-			if (units[unidade_selecionada].getTipo() == "quinta"){
-				temp = "Tipo : Quinta";
-				
-				for (int x = 4; x < temp.length() / 2; x++){
-					cout << " ";
-				}
-				cout << temp << endl;
-			}
-
-			if (units[unidade_selecionada].getTipo() == "cast"){
-				temp = "Tipo : Castelo";
-				
-				for (int x = 4; x < temp.length() / 2; x++){
-					cout << " ";
-				}
-				cout << temp << endl;
-			}
-
-			if (units[unidade_selecionada].getTipo() == "sold"){
-				temp = "Tipo : Soldado";
-				for (int x = 4; x < temp.length() / 2; x++){
-					cout << " ";
-				}
-				cout << temp << endl;
-			}
-
-			if (units[unidade_selecionada].getTipo() == "camp"){
-				temp = "Tipo : Campones";
-				for (int x = 4; x < temp.length() / 2; x++){
-					cout << " ";
-				}
-				cout << temp << endl;
-			}
-
-			if (units[unidade_selecionada].getTipo() == "caval"){
-				temp = "Tipo : Cavaleiro";
-				for (int x = 4; x < temp.length() / 2; x++){
-					cout << " ";
-				}
-				cout << temp << endl;
-			}
-
-			if (units[unidade_selecionada].getTipo() == "camp_caval"){
-				temp = "Tipo : Campones a Cavalo";
-				for (int x = 4; x < temp.length() / 2; x++){
-					cout << " ";
-				}
-				cout << temp << endl;
-			}
-		}
+		}				
 
 		if (i == 4 && select_on == 1)
 		{
 			cursor.gotoxy(dist + 1, 3 + i);
 			cursor.setTextColor(cursor.VERMELHO_CLARO);
-			temp = "Vida: " + to_string(units[unidade_selecionada].getVida());
+			temp = "Vida: " + to_string(units[x].getVida());
 
 			for (int x = 3; x < temp.length(); x++){
 				cout << " ";

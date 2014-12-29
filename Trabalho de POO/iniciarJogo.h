@@ -78,4 +78,6 @@ void colorFonteRecursos(string tipo, int x, int y);
 
 void ia(int turnos);
 
+void atacar(int id, int id_vitima);
+
 #endif

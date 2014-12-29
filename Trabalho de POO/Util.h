@@ -27,4 +27,10 @@ const static char catapulta = char(204);
 static int largura;
 static int altura;
 
+//Combate das unidades
+
+static int f_ataque_sold = 5;
+static int f_ataque_campones = 1;
+static int f_ataque_cavaleiro = 7;
+
 #endif
