@@ -97,7 +97,7 @@ void Sidebar::imprimirSidebar(){
 	string temp, tipo;
 	DWORD saida;
 	HANDLE hconsola;
-	int i, linhas_sidebar = 24, x;
+	int i, linhas_sidebar = 24, x, tipo_sel;
 	hconsola = GetStdHandle(STD_OUTPUT_HANDLE);
 	
 	cursor.setTextColor(cursor.AMARELO_CLARO);
@@ -120,7 +120,7 @@ void Sidebar::imprimirSidebar(){
 			cursor.setTextColor(cursor.VERMELHO_CLARO);
 
 			for (x = 0; x < units.size(); x++){
-				if (units.size() > 0){
+				if (units.size() >= 1){
 					if (units[x].getIDGeral() == unidade_selecionada){
 
 						if (units[x].getTipo() == "sold"){
@@ -154,14 +154,14 @@ void Sidebar::imprimirSidebar(){
 							}
 							cout << temp << endl;
 						}
-
+						tipo_sel = 1;
 						break;
 					}
 				}
 			}
 
 			for (x = 0; x < barracos.size(); x++){
-				if (barracos.size() > 0){
+				if (barracos.size() >= 1){
 					if (barracos[x].getIDGeral() == unidade_selecionada){
 
 						if (barracos[x].getTipo() == "quar"){
@@ -200,17 +200,7 @@ void Sidebar::imprimirSidebar(){
 							}
 							cout << temp << endl;
 						}
-
-						cursor.gotoxy(dist + 1, 3 + i);
-						cursor.setTextColor(cursor.VERMELHO_CLARO);
-						temp = "Vida: " + to_string(barracos[x].getVida());
-
-						for (int x = 3; x < temp.length(); x++){
-							cout << " ";
-						}
-
-						cout << temp << endl;
-
+						tipo_sel = 2;
 						break;
 					}
 				}
@@ -219,15 +209,28 @@ void Sidebar::imprimirSidebar(){
 
 		if (i == 4 && select_on == 1)
 		{
-			cursor.gotoxy(dist + 1, 3 + i);
-			cursor.setTextColor(cursor.VERMELHO_CLARO);
-			temp = "Vida: " + to_string(units[x].getVida());
+			if (tipo_sel == 1){
+				cursor.gotoxy(dist + 1, 3 + i);
+				cursor.setTextColor(cursor.VERMELHO_CLARO);
+				temp = "Vida: " + to_string(units[x].getVida());
 
-			for (int x = 3; x < temp.length(); x++){
-				cout << " ";
+				for (int x = 3; x < temp.length(); x++){
+					cout << " ";
+				}
+
+				cout << temp << endl;
 			}
+			if (tipo_sel == 2){
+				cursor.gotoxy(dist + 1, 3 + i);
+				cursor.setTextColor(cursor.VERMELHO_CLARO);
+				temp = "Vida: " + to_string(barracos[x].getVida());
 
-			cout << temp << endl;
+				for (int x = 3; x < temp.length(); x++){
+					cout << " ";
+				}
+
+				cout << temp << endl;
+			}
 		}
 	}
 
@@ -282,6 +285,7 @@ void criarEdi(string tipo, string nome_pop, int x, int y, int pop_id){
 	temp_id = units.size() + barracos.size();
 	temp_id = temp_id + 1;
 
+	temp.setIDGeral(temp_id);
 	barracos.push_back(temp);
 
 	imprimirEdificios(barracos, coords_mapa_x, coords_mapa_y);
