@@ -196,6 +196,11 @@ int verificarComandoJogo(){
 		verificarComandoJogo();
 	}
 
+	if (bocados1[0] == "ataca"){
+		atacar(stoi(bocados1[1]), stoi(bocados1[2]));
+		verificarComandoJogo();
+	}
+
 	if (bocados1[0] == "scroll")
 	{
 		if (jogo_decorrer == 1){

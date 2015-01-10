@@ -23,6 +23,7 @@ public:
 	int getCoordX();
 	int getCoordY();
 	int getVida();
+	void mudarVida(int quantidade);
 	string getTipo();
 	void mudarCoordenadas(int cx, int cy);
 	int id;

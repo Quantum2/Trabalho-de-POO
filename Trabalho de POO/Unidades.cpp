@@ -58,6 +58,10 @@ int Unidade::getVida(){
 	return vida;
 }
 
+void Unidade::mudarVida(int quantidade){
+	vida = quantidade;
+}
+
 int Edificio::getVida(){
 	return vida;
 }

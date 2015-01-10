@@ -410,6 +410,41 @@ void colorFonteRecursos(string tipo, int x, int y){
 	resetEcra();
 }
 
+void atacar(int id, int id_vitima){
+	int pos_x_vit, pos_y_vit, pos_vit_id, f_ataque;
+	float defesa_vit;
+	bool vit_existe = false;
+	Consola con;
+
+	for (int i = 0; i < units.size(); i++){
+		if (units[i].getIDGeral() == id_vitima)
+		{
+			pos_x_vit = units[i].getCoordX();
+			pos_y_vit = units[i].getCoordY();
+			pos_vit_id = i;
+			vit_existe = true;
+		}
+	}
+
+	for (int i = 0; i < units.size(); i++){
+		if (units[i].getIDGeral() == id && vit_existe == true)
+		{
+			units[i].mudarCoordenadas(pos_x_vit, pos_y_vit);
+			if (units[i].getTipo() == "sold")
+			{
+				f_ataque = 5;
+				units[i].mudarCoordenadas(pos_x_vit - 1, pos_y_vit - 1);
+				if (units[pos_vit_id].getTipo() == "sold")
+					defesa_vit = 0.2f;
+
+				con.gotoxy(units[pos_vit_id].getCoordX() + 2, units[pos_vit_id].getCoordY());
+				cout << "-" << f_ataque * (1 - defesa_vit);
+				units[pos_vit_id].mudarVida(units[pos_vit_id].getVida() - (f_ataque * (1 - defesa_vit)));
+			}
+		}
+	}
+}
+
 void ia(int turnos){
 	//A fazer
 }
