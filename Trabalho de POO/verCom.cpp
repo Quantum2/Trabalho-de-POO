@@ -196,6 +196,10 @@ int verificarComandoJogo(){
 		verificarComandoJogo();
 	}
 
+	if (bocados1[0] == "mina"){
+		recRecursos(bocados1[1], stoi(bocados1[2]));
+	}
+
 	if (bocados1[0] == "ataca"){
 		atacar(stoi(bocados1[1]), stoi(bocados1[2]));
 		verificarComandoJogo();

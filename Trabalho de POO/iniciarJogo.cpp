@@ -10,6 +10,7 @@ Mapa mapa_global(LINHAS, COLUNAS);
 int coords_mapa_x, coords_mapa_y;
 int posicao_jogo_x, posicao_jogo_y;
 int unidade_selecionada, select_on = 0;
+int unidade_previa;
 
 Mapa::Mapa(int tamx, int tamy)
 {
@@ -381,11 +382,17 @@ void movimentarUnidades(int id, int x, int y, int tipo_movimento){
 	}
 	
 	if (tipo_movimento == 1){
-		units[id - 1].mudarCoordenadas(units[id - 1].getCoordX() + x, units[id - 1].getCoordY() + y);
+		for (int i = 0; i < units.size(); i++){
+			if (units[i].getIDGeral() == id)
+				units[id].mudarCoordenadas(units[id - 1].getCoordX() + x, units[id - 1].getCoordY() + y);
+		}
 	}
 
 	if (tipo_movimento == 2){
-		units[id - 1].mudarCoordenadas(x, y);
+		for (int i = 0; i < units.size(); i++){
+			if (units[i].getIDGeral() == id)
+				units[id].mudarCoordenadas(x, y);
+		}
 	}
 
 	resetEcra();
@@ -485,8 +492,96 @@ void atacar(int id, int id_vitima){
 		}
 	}
 
+	vit_existe = 0;
+
+	for (int i = 0; i < barracos.size(); i++){
+		if (barracos[i].getIDGeral() == id_vitima)
+		{
+			pos_x_vit = barracos[i].getCoordX();
+			pos_y_vit = barracos[i].getCoordY();
+			pos_vit_id = i;
+			vit_existe = true;
+		}
+	}
+
+	for (int i = 0; i < units.size(); i++){
+		if (units[i].getIDGeral() == id && vit_existe == true)
+		{
+			units[i].mudarCoordenadas(pos_x_vit, pos_y_vit);
+
+			if (units[i].getTipo() == "sold")
+			{
+				f_ataque = 5;
+				defesa_vit = 1;
+				units[i].mudarCoordenadas(pos_x_vit - 1, pos_y_vit - 1);
+
+				if (barracos[pos_vit_id].getTipo() == "cast")
+					defesa_vit = 0;
+				if (barracos[pos_vit_id].getTipo() == "quar")
+					defesa_vit = 0;
+				if (barracos[pos_vit_id].getTipo() == "esta")
+					defesa_vit = 0;
+				if (barracos[pos_vit_id].getTipo() == "quinta")
+					defesa_vit = 0;
+
+				resetEcra();
+				con.gotoxy(barracos[pos_vit_id].getCoordX() + 2, barracos[pos_vit_id].getCoordY());
+				dano = f_ataque * (1 - defesa_vit);
+				cout << "-" << dano;
+				con.gotoxy(barracos[pos_vit_id].getCoordX() + 2, barracos[pos_vit_id].getCoordY() + 1);
+				cout << "V: " << barracos[pos_vit_id].getVida();
+				Sleep(TEMPO_ESPERA);
+				barracos[pos_vit_id].mudarVida(barracos[pos_vit_id].getVida() - (f_ataque * (1 - defesa_vit)));
+			}
+
+			if (units[i].getTipo() == "caval")
+			{
+				f_ataque = 8;
+				defesa_vit = 1;
+				units[i].mudarCoordenadas(pos_x_vit - 1, pos_y_vit - 1);
+
+				if (barracos[pos_vit_id].getTipo() == "cast")
+					defesa_vit = 0;
+				if (barracos[pos_vit_id].getTipo() == "quar")
+					defesa_vit = 0;
+				if (barracos[pos_vit_id].getTipo() == "esta")
+					defesa_vit = 0;
+				if (barracos[pos_vit_id].getTipo() == "quinta")
+					defesa_vit = 0;
+
+				resetEcra();
+				con.gotoxy(barracos[pos_vit_id].getCoordX() + 2, barracos[pos_vit_id].getCoordY());
+				dano = f_ataque * (1 - defesa_vit);
+				cout << "-" << dano;
+				con.gotoxy(barracos[pos_vit_id].getCoordX() + 2, barracos[pos_vit_id].getCoordY() + 1);
+				cout << "V: " << barracos[pos_vit_id].getVida();
+				Sleep(TEMPO_ESPERA);
+				barracos[pos_vit_id].mudarVida(barracos[pos_vit_id].getVida() - (f_ataque * (1 - defesa_vit)));
+			}
+		}
+	}
+
+	for (size_t i = 0; i < units.size(); i++)
+		if (units[i].getVida() <= 0)
+			units.erase(units.begin() + i);
+
+	for (size_t i = 0; i < barracos.size(); i++)
+		if (barracos[i].getVida() <= 0)
+			barracos.erase(barracos.begin() + i);
+
 	resetEcra();
 	verificarComandoJogo();
+}
+
+void recRecursos(string unidade_id, int id){
+	for (int i = 0; i < units.size(); i++){
+		if (units[i].getIDGeral() == id && unidade_id != "-"){
+			movimentarUnidades(id, fontes_recursos[stoi(unidade_id)].getPosX() + 1, fontes_recursos[stoi(unidade_id)].getPosY() + 1, 2);
+		}
+		else if (units[i].getIDGeral() == id){
+
+		}
+	}
 }
 
 void ia(int turnos){

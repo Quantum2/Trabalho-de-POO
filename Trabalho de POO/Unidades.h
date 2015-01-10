@@ -45,6 +45,7 @@ public:
 	int getCoordX();
 	int getCoordY();
 	int getVida();
+	void mudarVida(int quantidade);
 	string getTipo();
 	void mudarCoordenadas(int cx, int cy);
 	int id;
@@ -70,6 +71,9 @@ public:
 private:
 	string nome;
 	int ID;
+	int pedra;
+	int madeira;
+	int ouro;
 
 	void setNome(string nomes);
 	Popul(){}

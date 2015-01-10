@@ -80,4 +80,6 @@ void ia(int turnos);
 
 void atacar(int id, int id_vitima);
 
+void recRecursos(string unidade_id, int id);
+
 #endif

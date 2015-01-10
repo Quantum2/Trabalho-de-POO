@@ -70,6 +70,10 @@ void Unidade::mudarVida(int quantidade){
 	vida = quantidade;
 }
 
+void Edificio::mudarVida(int quantidade){
+	vida = quantidade;
+}
+
 int Edificio::getVida(){
 	return vida;
 }
@@ -281,15 +285,15 @@ void imprimirRecursos(vector<Recursos> recs, int mapa_coordx, int mapa_coordy){
 
 		if (recs[i].getTipo() == "Floresta"){
 			con.gotoxy(recs[i].getPosX(), recs[i].getPosY());
-			cout << 'F';
+			cout << 'F' << recs[i].getID();
 		}
 		if (recs[i].getTipo() == "Mina"){
 			con.gotoxy(recs[i].getPosX(), recs[i].getPosY());
-			cout << 'M';
+			cout << 'M' << recs[i].getID();
 		}
 		if (recs[i].getTipo() == "Pedreira"){
 			con.gotoxy(recs[i].getPosX(), recs[i].getPosY());
-			cout << 'P';
+			cout << 'P' << recs[i].getID();
 		}
 	}
 
