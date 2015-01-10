@@ -1,5 +1,7 @@
 ﻿#include "iniciarJogo.h"
 
+#define TEMPO_ESPERA 850
+
 vector<Unidade> units;
 vector<Edificio> barracos;
 vector<Recursos> fontes_recursos;
@@ -411,7 +413,7 @@ void colorFonteRecursos(string tipo, int x, int y){
 }
 
 void atacar(int id, int id_vitima){
-	int pos_x_vit, pos_y_vit, pos_vit_id, f_ataque;
+	int pos_x_vit, pos_y_vit, pos_vit_id, f_ataque, dano;
 	float defesa_vit;
 	bool vit_existe = false;
 	Consola con;
@@ -430,19 +432,61 @@ void atacar(int id, int id_vitima){
 		if (units[i].getIDGeral() == id && vit_existe == true)
 		{
 			units[i].mudarCoordenadas(pos_x_vit, pos_y_vit);
+
 			if (units[i].getTipo() == "sold")
 			{
 				f_ataque = 5;
+				defesa_vit = 1;
 				units[i].mudarCoordenadas(pos_x_vit - 1, pos_y_vit - 1);
+
 				if (units[pos_vit_id].getTipo() == "sold")
 					defesa_vit = 0.2f;
+				if (units[pos_vit_id].getTipo() == "caval")
+					defesa_vit = 0.4f;
+				if (units[pos_vit_id].getTipo() == "camp")
+					defesa_vit = 0;
+				if (units[pos_vit_id].getTipo() == "camp_caval")
+					defesa_vit = 0;
 
+				resetEcra();
 				con.gotoxy(units[pos_vit_id].getCoordX() + 2, units[pos_vit_id].getCoordY());
-				cout << "-" << f_ataque * (1 - defesa_vit);
+				dano = f_ataque * (1 - defesa_vit);
+				cout << "-" << dano;
+				con.gotoxy(units[pos_vit_id].getCoordX() + 2, units[pos_vit_id].getCoordY() + 1);
+				cout << "V: " << units[pos_vit_id].getVida();
+				Sleep(TEMPO_ESPERA);
+				units[pos_vit_id].mudarVida(units[pos_vit_id].getVida() - (f_ataque * (1 - defesa_vit)));
+			}
+
+			if (units[i].getTipo() == "caval")
+			{
+				f_ataque = 8;
+				defesa_vit = 1;
+				units[i].mudarCoordenadas(pos_x_vit - 1, pos_y_vit - 1);
+
+				if (units[pos_vit_id].getTipo() == "sold")
+					defesa_vit = 0.2f;
+				if (units[pos_vit_id].getTipo() == "caval")
+					defesa_vit = 0.4f;
+				if (units[pos_vit_id].getTipo() == "camp")
+					defesa_vit = 0;
+				if (units[pos_vit_id].getTipo() == "camp_caval")
+					defesa_vit = 0;
+
+				resetEcra();
+				con.gotoxy(units[pos_vit_id].getCoordX() + 2, units[pos_vit_id].getCoordY());
+				dano = f_ataque * (1 - defesa_vit);
+				cout << "-" << dano;
+				con.gotoxy(units[pos_vit_id].getCoordX() + 2, units[pos_vit_id].getCoordY() + 1);
+				cout << "V: " << units[pos_vit_id].getVida();
+				Sleep(TEMPO_ESPERA);
 				units[pos_vit_id].mudarVida(units[pos_vit_id].getVida() - (f_ataque * (1 - defesa_vit)));
 			}
 		}
 	}
+
+	resetEcra();
+	verificarComandoJogo();
 }
 
 void ia(int turnos){

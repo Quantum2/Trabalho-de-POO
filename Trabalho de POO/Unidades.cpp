@@ -11,12 +11,20 @@ int Base::getIDGeral(){
 }
 
 Unidade::Unidade(int x, int y, string tipo, int i, int pid){
-	vida = 100;
 	id = i;
 	id_pop = pid;
 	
 	setCoords(x,y);
 	setTipo(tipo);
+
+	if (tipo == "sold")
+		vida = 40;
+	if (tipo == "caval")
+		vida = 60;
+	if (tipo == "camp")
+		vida = 20;
+	if (tipo == "camp_caval")
+		vida = 40;
 }
 
 Edificio::Edificio(int x, int y, string tip, int i, int pid){
