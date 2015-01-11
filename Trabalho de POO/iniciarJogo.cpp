@@ -249,7 +249,7 @@ void Sidebar::imprimirSidebar(){
 
 				temp = "Nome: " + getPops()[0].getNome();
 
-				for (int x = 3; x < temp.size(); x++){
+				for (int x = 0; x < 3; x++){
 					cout << " ";
 				}
 				cout << temp;
@@ -274,7 +274,7 @@ void Sidebar::imprimirSidebar(){
 
 				temp = "Nome: " + getPops()[1].getNome();
 
-				for (int x = 3; x < temp.size(); x++){
+				for (int x = 0; x < 3; x++){
 					cout << " ";
 				}
 				cout << temp;
@@ -299,7 +299,7 @@ void Sidebar::imprimirSidebar(){
 
 				temp = "Nome: " + getPops()[2].getNome();
 
-				for (int x = 3; x < temp.size(); x++){
+				for (int x = 0; x < 3; x++){
 					cout << " ";
 				}
 				cout << temp;
@@ -324,7 +324,7 @@ void Sidebar::imprimirSidebar(){
 
 				temp = "Nome: " + getPops()[3].getNome();
 
-				for (int x = 3; x < temp.size(); x++){
+				for (int x = 0; x < 3; x++){
 					cout << " ";
 				}
 				cout << temp;
@@ -864,9 +864,11 @@ void deambula(int id){
 
 void ia(int turnos){
 	for (int i = 0; i <= turnos; i++){
-		for (int s = 0; s < units.size(); s++){
-			if (units[s].id_pop != 0){
-				deambula(units[s].getIDGeral());
+		if (units.size() > 0){
+			for (int s = 0; s < units.size(); s++){
+				if (units[s].id_pop != 0){
+					deambula(units[s].getIDGeral());
+				}
 			}
 		}
 	}

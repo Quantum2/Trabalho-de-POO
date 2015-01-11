@@ -351,6 +351,11 @@ int verificarComandoJogo(vector<string> vec, int linha){
 		verificarComandoJogo();
 	}
 
+	if (bocados1[0] == "setf"){
+		colorFonteRecursos(bocados1[1], stoi(bocados1[2]), stoi(bocados1[3]));
+		verificarComandoJogo();
+	}
+
 	if (bocados1[0] == "sete")
 	{
 		vector<Popul> pops_existentes = getPops();
@@ -364,7 +369,7 @@ int verificarComandoJogo(vector<string> vec, int linha){
 
 		for (size_t j = 0; j < pops_existentes.size(); j++){
 			if (bocados1[1] == pops_existentes[j].getNome()){
-				criarUnidades(bocados1[2], bocados1[1], stoi(bocados1[3]), stoi(bocados1[4]), j);
+				criarEdi(bocados1[2], bocados1[1], stoi(bocados1[3]), stoi(bocados1[4]), j);
 			}
 		}
 
@@ -434,12 +439,61 @@ int verificarComandoJogo(vector<string> vec, int linha){
 
 	if (bocados1[0] == "next"){
 
-		if (bocados1.size() != 1)
+		if (bocados1.size() >= 1)
 			for (int next = 0; next < stoi(bocados1[1]); next++){
+				ia(stoi(bocados1[1]));
 				resetEcra();
 			}
+		else{
+			ia(1);
+		}
 		resetEcra();
 		verificarComandoJogo();
+	}
+
+	if (bocados1[0] == "mina"){
+		if (bocados1.size() == 3)
+			recRecursos(bocados1[1], stoi(bocados1[2]));
+	}
+
+	if (bocados1[0] == "ataca"){
+		atacar(stoi(bocados1[1]), stoi(bocados1[2]));
+		verificarComandoJogo();
+	}
+
+	if (bocados1[0] == "ouro"){
+		cheats("ouro", bocados1[1], stoi(bocados1[2]));
+		resetEcra();
+		verificarComandoJogo();
+	}
+
+	if (bocados1[0] == "pedra"){
+		cheats("pedra", bocados1[1], stoi(bocados1[2]));
+		resetEcra();
+		verificarComandoJogo();
+	}
+
+	if (bocados1[0] == "madeira"){
+		cheats("madeira", bocados1[1], stoi(bocados1[2]));
+		resetEcra();
+		verificarComandoJogo();
+	}
+
+	if (bocados1[0] == "deambula"){
+		if (bocados1.size() >= 2){
+			deambula(stoi(bocados1[1]));
+		}
+		verificarComandoJogo();
+	}
+
+	if (bocados1[0] == "mke"){
+		if (bocados1.size() == 6)
+			fazer_mke(stoi(bocados1[1]), bocados1[2], stoi(bocados1[3]), stoi(bocados1[4]));
+	}
+
+	if (bocados1[0] == "mku"){
+		if (bocados1.size() >= 2)
+			fazer(bocados1[1]);
 	}
 
 	if (bocados1[0] == "scroll")
