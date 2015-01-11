@@ -12,7 +12,6 @@ int coords_mapa_x, coords_mapa_y;
 int posicao_jogo_x, posicao_jogo_y;
 int unidade_selecionada, select_on = 0;
 int unidade_previa;
-int popul_select;
 
 Mapa::Mapa(int tamx, int tamy)
 {
@@ -236,6 +235,106 @@ void Sidebar::imprimirSidebar(){
 
 				cout << temp << endl;
 			}
+		}
+
+		if (i == 10){
+			if (getPops().size() != 0){
+				string temp;
+				cursor.gotoxy(dist + 1, 3 + i);
+				cursor.setTextColor(cursor.VERDE);
+
+				temp = "Nome: " + getPops()[0].getNome();
+
+				for (int x = 3; x < temp.size(); x++){
+					cout << " ";
+				}
+				cout << temp;
+			}
+		}
+		if (i == 11 && getPops().size() != 0){
+			cursor.gotoxy(dist + 1, 3 + i);
+			cursor.setTextColor(cursor.VERDE);
+			temp = "O: " + to_string(getPops()[0].getRecursos()[0]) + " P: " + to_string(getPops()[0].getRecursos()[1]) + " M: " + to_string(getPops()[0].getRecursos()[1]);
+
+			for (int x = 15; x < temp.size(); x++){
+				cout << " ";
+			}
+			cout << temp;
+		}
+
+		if (i == 13){
+			if (getPops().size() > 1){
+				string temp;
+				cursor.gotoxy(dist + 1, 3 + i);
+				cursor.setTextColor(cursor.AZUL);
+
+				temp = "Nome: " + getPops()[1].getNome();
+
+				for (int x = 3; x < temp.size(); x++){
+					cout << " ";
+				}
+				cout << temp;
+			}
+		}
+		if (i == 14 && getPops().size() > 1){
+			cursor.gotoxy(dist + 1, 3 + i);
+			cursor.setTextColor(cursor.AZUL);
+			temp = "O: " + to_string(getPops()[1].getRecursos()[0]) + " P: " + to_string(getPops()[1].getRecursos()[1]) + " M: " + to_string(getPops()[1].getRecursos()[1]);
+
+			for (int x = 15; x < temp.size(); x++){
+				cout << " ";
+			}
+			cout << temp;
+		}
+
+		if (i == 16){
+			if (getPops().size() > 2){
+				string temp;
+				cursor.gotoxy(dist + 1, 3 + i);
+				cursor.setTextColor(cursor.ROXO);
+
+				temp = "Nome: " + getPops()[2].getNome();
+
+				for (int x = 3; x < temp.size(); x++){
+					cout << " ";
+				}
+				cout << temp;
+			}
+		}
+		if (i == 17 && getPops().size() > 2){
+			cursor.gotoxy(dist + 1, 3 + i);
+			cursor.setTextColor(cursor.ROXO);
+			temp = "O: " + to_string(getPops()[2].getRecursos()[0]) + " P: " + to_string(getPops()[2].getRecursos()[1]) + " M: " + to_string(getPops()[2].getRecursos()[1]);
+
+			for (int x = 15; x < temp.size(); x++){
+				cout << " ";
+			}
+			cout << temp;
+		}
+
+		if (i == 19){
+			if (getPops().size() > 3){
+				string temp;
+				cursor.gotoxy(dist + 1, 3 + i);
+				cursor.setTextColor(cursor.CYAN_CLARO);
+
+				temp = "Nome: " + getPops()[3].getNome();
+
+				for (int x = 3; x < temp.size(); x++){
+					cout << " ";
+				}
+				cout << temp;
+			}
+		}
+		if (i == 20 && getPops().size() > 3){
+			cursor.gotoxy(dist + 1, 3 + i);
+			cursor.setTextColor(cursor.CYAN_CLARO);
+			temp = "O: " + to_string(getPops()[3].getRecursos()[0]) + " P: " + to_string(getPops()[3].getRecursos()[1]) + " M: " + to_string(getPops()[3].getRecursos()[1]);
+
+			for (int x = 15; x < temp.size(); x++){
+				cout << " ";
+			}
+			cout << temp;
 		}
 	}
 

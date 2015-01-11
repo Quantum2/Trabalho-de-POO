@@ -111,6 +111,15 @@ void Popul::mudarRecs(int tipo, int quantidade){
 		madeira = madeira + quantidade;
 }
 
+vector<int> Popul::getRecursos(){
+	vector<int> vec;
+	vec.push_back(ouro);
+	vec.push_back(pedra);
+	vec.push_back(madeira);
+
+	return vec;
+}
+
 string Popul::getNome(){
 	return nome;
 }

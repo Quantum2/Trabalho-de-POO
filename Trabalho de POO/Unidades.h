@@ -67,6 +67,7 @@ public:
 	int getID();
 	void setID(int ID);
 	void mudarRecs(int tipo, int quantidade);
+	vector<int> getRecursos();
 
 	Popul(string nomes);
 private:
