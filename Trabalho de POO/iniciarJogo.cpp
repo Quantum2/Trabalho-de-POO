@@ -1,6 +1,7 @@
 ﻿#include "iniciarJogo.h"
 
 #define TEMPO_ESPERA 850
+#define QUANTIDADE_MINAR 10
 
 vector<Unidade> units;
 vector<Edificio> barracos;
@@ -11,6 +12,7 @@ int coords_mapa_x, coords_mapa_y;
 int posicao_jogo_x, posicao_jogo_y;
 int unidade_selecionada, select_on = 0;
 int unidade_previa;
+int popul_select;
 
 Mapa::Mapa(int tamx, int tamy)
 {
@@ -631,13 +633,47 @@ void atacar(int id, int id_vitima){
 
 void recRecursos(string unidade_id, int id){
 	int unidade_anterior;
+	vector<Popul> pops_temp = getPops();
 
 	for (int i = 0; i < units.size(); i++){
 		if (units[i].getIDGeral() == id && unidade_id != "-"){
 			movimentarUnidades(unidade_anterior, fontes_recursos[stoi(unidade_id)].getPosX() + 1, fontes_recursos[stoi(unidade_id)].getPosY() + 1, 2);
+
+			if (units[i].getTipo() == "camp"){
+				fontes_recursos[stoi(unidade_id)].res_restante = fontes_recursos[stoi(unidade_id)].res_restante - QUANTIDADE_MINAR;
+
+				if (fontes_recursos[stoi(unidade_id)].getTipo() == "flo"){
+					pops_temp[units[i].id_pop].mudarRecs(3, QUANTIDADE_MINAR);
+				}
+				if (fontes_recursos[stoi(unidade_id)].getTipo() == "min"){
+					pops_temp[units[i].id_pop].mudarRecs(1, QUANTIDADE_MINAR);
+				}
+				if (fontes_recursos[stoi(unidade_id)].getTipo() == "ped"){
+					pops_temp[units[i].id_pop].mudarRecs(2, QUANTIDADE_MINAR);
+				}
+
+				makePops(pops_temp);
+			}
 		}
 		else if (units[i].getIDGeral() == id){
+			unidade_anterior = id;
 			movimentarUnidades(id, fontes_recursos[stoi(unidade_id)].getPosX() + 1, fontes_recursos[stoi(unidade_id)].getPosY() + 1, 2);
+			
+			if (units[i].getTipo() == "camp"){
+				fontes_recursos[stoi(unidade_id)].res_restante = fontes_recursos[stoi(unidade_id)].res_restante - QUANTIDADE_MINAR;
+
+				if (fontes_recursos[stoi(unidade_id)].getTipo() == "flo"){
+					pops_temp[units[i].id_pop].mudarRecs(3, QUANTIDADE_MINAR);
+				}
+				if (fontes_recursos[stoi(unidade_id)].getTipo() == "min"){
+					pops_temp[units[i].id_pop].mudarRecs(1, QUANTIDADE_MINAR);
+				}
+				if (fontes_recursos[stoi(unidade_id)].getTipo() == "ped"){
+					pops_temp[units[i].id_pop].mudarRecs(2, QUANTIDADE_MINAR);
+				}
+
+				makePops(pops_temp);
+			}
 		}
 	}
 }

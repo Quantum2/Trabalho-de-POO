@@ -66,6 +66,7 @@ public:
 	string getNome();
 	int getID();
 	void setID(int ID);
+	void mudarRecs(int tipo, int quantidade);
 
 	Popul(string nomes);
 private:
@@ -86,6 +87,7 @@ public:
 	int getPosY();
 	int getID();
 	string getTipo();
+	void mudar(int quantidade);
 	Recursos(string tipo_recurso, int x, int y, int id_inicial);
 private:
 	int ID;
@@ -96,6 +98,8 @@ private:
 void Pops_func(Popul pop_a);
 
 vector<Popul> getPops();
+
+void makePops(vector<Popul> p);
 
 void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy);
 

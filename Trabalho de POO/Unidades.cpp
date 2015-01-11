@@ -93,10 +93,22 @@ string Edificio::getTipo(){
 
 Popul::Popul(string nomes){
 	setNome(nomes);
+	ouro = 20;
+	pedra = 50;
+	madeira = 200;
 }
 
 void Popul::setNome(string nomes){
 	nome = nomes;
+}
+
+void Popul::mudarRecs(int tipo, int quantidade){
+	if (tipo == 1)
+		ouro = ouro + quantidade;
+	if (tipo == 2)
+		pedra = pedra + quantidade;
+	if (tipo == 3)
+		madeira = madeira + quantidade;
 }
 
 string Popul::getNome(){
@@ -140,6 +152,10 @@ void Pops_func(Popul pop_a){
 
 vector<Popul> getPops(){
 	return populacoes;
+}
+
+void makePops(vector<Popul> p){
+	populacoes = p;
 }
 
 void imprimirUnidades(vector<Unidade> unit, int mapa_coordx, int mapa_coordy){
