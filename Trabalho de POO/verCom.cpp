@@ -190,6 +190,7 @@ int verificarComandoJogo(){
 
 		if (bocados1.size() !=1)
 			for (int next = 0; next < stoi(bocados1[1]); next++){
+				ia(stoi(bocados1[1]));
 				resetEcra();
 			}	
 		resetEcra();
@@ -228,6 +229,7 @@ int verificarComandoJogo(){
 		if (bocados1.size() >= 2){
 			deambula(stoi(bocados1[1]));
 		}
+		verificarComandoJogo();
 	}
 
 	if (bocados1[0] == "scroll")

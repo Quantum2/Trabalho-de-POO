@@ -818,17 +818,27 @@ void cheats(string tipo, string nome, int quantidade){
 
 void deambula(int id){
 	srand(time(NULL));
-	int rand;
 
 	for (int i = 0; i < units.size(); i++){
-		if (units[i].getIDGeral() == id){
-
+		if (units[i].getIDGeral() == id && units[i].id_pop != 0){
+			if (rand() % 2 == 0)
+				movimentarUnidades(id, rand() % 10 + 1, rand() % 10 + 1, 1);
+			if (rand() % 2 == 1)
+				movimentarUnidades(id, -(rand() % 10 + 1), -(rand() % 10 + 1), 1);
 		}
 	}
+
+	resetEcra();
 }
 
 void ia(int turnos){
-	//A fazer
+	for (int i = 0; i <= turnos; i++){
+		for (int s = 0; s < units.size(); s++){
+			if (units[s].id_pop != 0){
+				deambula(units[s].getIDGeral());
+			}
+		}
+	}
 }
 
 void resetEcra(){

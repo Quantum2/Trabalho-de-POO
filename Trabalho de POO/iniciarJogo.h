@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <time.h>
+#include <cstdlib>
 #include "Consola.h"
 #include "verCom.h"
 #include "Unidades.h"
