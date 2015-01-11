@@ -232,6 +232,15 @@ int verificarComandoJogo(){
 		verificarComandoJogo();
 	}
 
+	if (bocados1[0] == "mke"){
+
+	}
+
+	if (bocados1[0] == "mku"){
+		if (bocados1.size() >= 2)
+		fazer(bocados1[1]);
+	}
+
 	if (bocados1[0] == "scroll")
 	{
 		if (jogo_decorrer == 1){

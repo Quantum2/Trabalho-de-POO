@@ -101,7 +101,7 @@ void Sidebar::imprimirSidebar(){
 	string temp, tipo;
 	DWORD saida;
 	HANDLE hconsola;
-	int i, linhas_sidebar = 24, x, tipo_sel;
+	int i, linhas_sidebar = 24, x, y, tipo_sel;
 	hconsola = GetStdHandle(STD_OUTPUT_HANDLE);
 	
 	cursor.setTextColor(cursor.AMARELO_CLARO);
@@ -158,6 +158,7 @@ void Sidebar::imprimirSidebar(){
 							}
 							cout << temp << endl;
 						}
+						y = x;
 						tipo_sel = 1;
 						break;
 					}
@@ -204,6 +205,7 @@ void Sidebar::imprimirSidebar(){
 							}
 							cout << temp << endl;
 						}
+						y = x;
 						tipo_sel = 2;
 						break;
 					}
@@ -211,9 +213,11 @@ void Sidebar::imprimirSidebar(){
 			}
 		}				
 
+		x = y;
+
 		if (i == 4 && select_on == 1)
 		{
-			if (tipo_sel == 1){
+			if (tipo_sel == 1 && units.size() != 0){
 				cursor.gotoxy(dist + 1, 3 + i);
 				cursor.setTextColor(cursor.VERMELHO_CLARO);
 				temp = "Vida: " + to_string(units[x].getVida());
@@ -345,6 +349,7 @@ void criarCampo(int linhas, int colunas){
 	Consola con;
 	Mapa map(linhas, colunas);
 	Sidebar barra(map.getTamY());
+
 	coords_mapa_x = linhas;
 	coords_mapa_y = colunas;
 
@@ -839,6 +844,61 @@ void ia(int turnos){
 			}
 		}
 	}
+}
+
+void fazer(string oque){
+	vector<Popul> temp;
+	temp = getPops();
+
+	for (int i = 0; i < barracos.size(); i++){
+		if (barracos[i].getTipo() == "quar"){
+			if (oque == "sold"){
+				if (temp[0].getRecursos()[1] >= 10 && temp[0].getRecursos()[2] >= 25){
+					criarUnidades("sold", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
+					temp[0].mudarRecs(2, -10);
+					temp[0].mudarRecs(3, -25);
+				}
+			}
+			if (oque == "camp"){
+				if (temp[0].getRecursos()[1] >= 5 && temp[0].getRecursos()[2] >= 10){
+					criarUnidades("camp", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
+					temp[0].mudarRecs(2, -10);
+					temp[0].mudarRecs(3, -25);
+				}
+			}
+			if (oque == "cav"){
+				if (temp[0].getRecursos()[1] >= 15 && temp[0].getRecursos()[2] >= 35){
+					criarUnidades("caval", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
+					temp[0].mudarRecs(2, -10);
+					temp[0].mudarRecs(3, -25);
+				}
+			}
+			if (oque == "cv"){
+				if (temp[0].getRecursos()[1] >= 10 && temp[0].getRecursos()[2] >= 35){
+					criarUnidades("camp_caval", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
+					temp[0].mudarRecs(2, -10);
+					temp[0].mudarRecs(3, -25);
+				}
+			}
+			if (oque == "catapulta"){
+				if (temp[0].getRecursos()[1] >= 65 && temp[0].getRecursos()[2] >= 100){
+					criarUnidades("catap", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
+					temp[0].mudarRecs(2, -10);
+					temp[0].mudarRecs(3, -25);
+				}
+			}
+		}
+		else{
+			cout << "Nao existe nenhum edificio capaz de criar unidades" << endl;
+			getchar();
+			resetEcra();
+			verificarComandoJogo();
+		}
+	}
+}
+
+void fazer_mke(int id, string oque, int x, int y){
+
 }
 
 void resetEcra(){

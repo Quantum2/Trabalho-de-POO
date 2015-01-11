@@ -86,6 +86,10 @@ void cheats(string tipo, string nome, int quantidade);
 
 void deambula(int id);
 
+void fazer(string oque);
+
+void fazer_mke(int id, string oque, int x, int y);
+
 void recRecursos(string unidade_id, int id);
 
 #endif
