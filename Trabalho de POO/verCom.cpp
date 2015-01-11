@@ -197,12 +197,37 @@ int verificarComandoJogo(){
 	}
 
 	if (bocados1[0] == "mina"){
-		recRecursos(bocados1[1], stoi(bocados1[2]));
+		if (bocados1.size() == 3)
+			recRecursos(bocados1[1], stoi(bocados1[2]));
 	}
 
 	if (bocados1[0] == "ataca"){
 		atacar(stoi(bocados1[1]), stoi(bocados1[2]));
 		verificarComandoJogo();
+	}
+
+	if (bocados1[0] == "ouro"){
+		cheats("ouro", bocados1[1], stoi(bocados1[2]));
+		resetEcra();
+		verificarComandoJogo();
+	}
+
+	if (bocados1[0] == "pedra"){
+		cheats("pedra", bocados1[1], stoi(bocados1[2]));
+		resetEcra();
+		verificarComandoJogo();
+	}
+
+	if (bocados1[0] == "madeira"){
+		cheats("madeira", bocados1[1], stoi(bocados1[2]));
+		resetEcra();
+		verificarComandoJogo();
+	}
+
+	if (bocados1[0] == "deambula"){
+		if (bocados1.size() >= 2){
+			deambula(stoi(bocados1[1]));
+		}
 	}
 
 	if (bocados1[0] == "scroll")

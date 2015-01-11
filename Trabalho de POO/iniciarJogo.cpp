@@ -788,6 +788,45 @@ void recRecursos(string unidade_id, int id){
 	}
 }
 
+void cheats(string tipo, string nome, int quantidade){
+	vector<Popul> temp = getPops();
+
+	if (tipo == "ouro")
+	{
+		for (int i = 0; i < temp.size(); i++){
+			if (temp[i].getNome() == nome)
+				temp[i].mudarRecs(1, quantidade);
+		}
+	}
+	if (tipo == "pedra")
+	{
+		for (int i = 0; i < temp.size(); i++){
+			if (temp[i].getNome() == nome)
+				temp[i].mudarRecs(2, quantidade);
+		}
+	}
+	if (tipo == "madeira")
+	{
+		for (int i = 0; i < temp.size(); i++){
+			if (temp[i].getNome() == nome)
+				temp[i].mudarRecs(3, quantidade);
+		}
+	}
+
+	makePops(temp);
+}
+
+void deambula(int id){
+	srand(time(NULL));
+	int rand;
+
+	for (int i = 0; i < units.size(); i++){
+		if (units[i].getIDGeral() == id){
+
+		}
+	}
+}
+
 void ia(int turnos){
 	//A fazer
 }

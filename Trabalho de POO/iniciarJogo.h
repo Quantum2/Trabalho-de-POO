@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <time.h>
 #include "Consola.h"
 #include "verCom.h"
 #include "Unidades.h"
@@ -79,6 +80,10 @@ void colorFonteRecursos(string tipo, int x, int y);
 void ia(int turnos);
 
 void atacar(int id, int id_vitima);
+
+void cheats(string tipo, string nome, int quantidade);
+
+void deambula(int id);
 
 void recRecursos(string unidade_id, int id);
 

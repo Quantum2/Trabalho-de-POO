@@ -129,7 +129,7 @@ Recursos::Recursos(string tipo_recurso, int x, int y, int id_inicial){
 	pos_x = x;
 	pos_y = y;
 	ID = id_inicial;
-	res_restante = 100;
+	res_restante = 40;
 }
 
 int Recursos::getPosX(){
