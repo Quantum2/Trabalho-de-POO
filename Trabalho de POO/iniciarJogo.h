@@ -68,7 +68,11 @@ void reimp(Mapa map, Sidebar barra);
 
 void criarUnidades(string tipo, string nome_pop, int x, int y, int pop_id);
 
+void criarUnidadesInt(string tipo, string nome_pop, int x, int y, int pop_id);
+
 void criarEdi(string tipo, string nome_pop, int x, int y, int pop_id);
+
+void criarEdiInt(string tipo, string nome_pop, int x, int y, int pop_id);
 
 void scroll();
 
