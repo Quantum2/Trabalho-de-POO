@@ -254,9 +254,9 @@ void Sidebar::imprimirSidebar(){
 		if (i == 11 && getPops().size() != 0){
 			cursor.gotoxy(dist + 1, 3 + i);
 			cursor.setTextColor(cursor.VERDE);
-			temp = "O: " + to_string(getPops()[0].getRecursos()[0]) + " P: " + to_string(getPops()[0].getRecursos()[1]) + " M: " + to_string(getPops()[0].getRecursos()[1]);
+			temp = "O:" + to_string(getPops()[0].getRecursos()[0]) + " P:" + to_string(getPops()[0].getRecursos()[1]) + " M:" + to_string(getPops()[0].getRecursos()[2]);
 
-			for (int x = 15; x < temp.size(); x++){
+			for (int x = 13; x < temp.size(); x++){
 				cout << " ";
 			}
 			cout << temp;
@@ -279,9 +279,9 @@ void Sidebar::imprimirSidebar(){
 		if (i == 14 && getPops().size() > 1){
 			cursor.gotoxy(dist + 1, 3 + i);
 			cursor.setTextColor(cursor.AZUL);
-			temp = "O: " + to_string(getPops()[1].getRecursos()[0]) + " P: " + to_string(getPops()[1].getRecursos()[1]) + " M: " + to_string(getPops()[1].getRecursos()[1]);
+			temp = "O:" + to_string(getPops()[1].getRecursos()[0]) + " P:" + to_string(getPops()[1].getRecursos()[1]) + " M:" + to_string(getPops()[1].getRecursos()[2]);
 
-			for (int x = 15; x < temp.size(); x++){
+			for (int x = 13; x < temp.size(); x++){
 				cout << " ";
 			}
 			cout << temp;
@@ -304,9 +304,9 @@ void Sidebar::imprimirSidebar(){
 		if (i == 17 && getPops().size() > 2){
 			cursor.gotoxy(dist + 1, 3 + i);
 			cursor.setTextColor(cursor.ROXO);
-			temp = "O: " + to_string(getPops()[2].getRecursos()[0]) + " P: " + to_string(getPops()[2].getRecursos()[1]) + " M: " + to_string(getPops()[2].getRecursos()[1]);
+			temp = "O:" + to_string(getPops()[2].getRecursos()[0]) + " P:" + to_string(getPops()[2].getRecursos()[1]) + " M:" + to_string(getPops()[2].getRecursos()[2]);
 
-			for (int x = 15; x < temp.size(); x++){
+			for (int x = 13; x < temp.size(); x++){
 				cout << " ";
 			}
 			cout << temp;
@@ -329,9 +329,9 @@ void Sidebar::imprimirSidebar(){
 		if (i == 20 && getPops().size() > 3){
 			cursor.gotoxy(dist + 1, 3 + i);
 			cursor.setTextColor(cursor.CYAN_CLARO);
-			temp = "O: " + to_string(getPops()[3].getRecursos()[0]) + " P: " + to_string(getPops()[3].getRecursos()[1]) + " M: " + to_string(getPops()[3].getRecursos()[1]);
+			temp = "O:" + to_string(getPops()[3].getRecursos()[0]) + " P:" + to_string(getPops()[3].getRecursos()[1]) + " M:" + to_string(getPops()[3].getRecursos()[2]);
 
-			for (int x = 15; x < temp.size(); x++){
+			for (int x = 13; x < temp.size(); x++){
 				cout << " ";
 			}
 			cout << temp;
@@ -734,44 +734,55 @@ void recRecursos(string unidade_id, int id){
 	int unidade_anterior;
 	vector<Popul> pops_temp = getPops();
 
+	for (int s = 0; s < fontes_recursos.size(); s++){
+		if (fontes_recursos[0].res_restante <= 0)
+			fontes_recursos.erase(fontes_recursos.begin() + s);
+	}
+
 	for (int i = 0; i < units.size(); i++){
 		if (units[i].getIDGeral() == id && unidade_id == "-"){
-			movimentarUnidades(unidade_anterior, fontes_recursos[stoi(unidade_id)].getPosX() + 1, fontes_recursos[stoi(unidade_id)].getPosY() + 1, 2);
 
-			if (units[i].getTipo() == "camp"){
-				fontes_recursos[stoi(unidade_id)].res_restante = fontes_recursos[stoi(unidade_id)].res_restante - QUANTIDADE_MINAR;
-
-				if (fontes_recursos[stoi(unidade_id)].getTipo() == "flo"){
-					pops_temp[units[i].id_pop].mudarRecs(3, QUANTIDADE_MINAR);
-				}
-				if (fontes_recursos[stoi(unidade_id)].getTipo() == "min"){
-					pops_temp[units[i].id_pop].mudarRecs(1, QUANTIDADE_MINAR);
-				}
-				if (fontes_recursos[stoi(unidade_id)].getTipo() == "ped"){
-					pops_temp[units[i].id_pop].mudarRecs(2, QUANTIDADE_MINAR);
-				}
-
-				makePops(pops_temp);
-			}
-		}
-		else if (units[i].getIDGeral() == id){
-			unidade_anterior = id;
-			movimentarUnidades(id, fontes_recursos[stoi(unidade_id) - 1].getPosX() + 1, fontes_recursos[stoi(unidade_id) - 1].getPosY() + 1, 2);
-			
 			if (units[i].getTipo() == "camp"){
 				fontes_recursos[stoi(unidade_id) - 1].res_restante = fontes_recursos[stoi(unidade_id) - 1].res_restante - QUANTIDADE_MINAR;
 
 				if (fontes_recursos[stoi(unidade_id) - 1].getTipo() == "flo"){
 					pops_temp[units[i].id_pop].mudarRecs(3, QUANTIDADE_MINAR);
+					fontes_recursos[stoi(unidade_id) - 1].res_restante = fontes_recursos[stoi(unidade_id) - 1].res_restante - QUANTIDADE_MINAR;
 				}
 				if (fontes_recursos[stoi(unidade_id) - 1].getTipo() == "min"){
 					pops_temp[units[i].id_pop].mudarRecs(1, QUANTIDADE_MINAR);
+					fontes_recursos[stoi(unidade_id) - 1].res_restante = fontes_recursos[stoi(unidade_id) - 1].res_restante - QUANTIDADE_MINAR;
 				}
 				if (fontes_recursos[stoi(unidade_id) - 1].getTipo() == "ped"){
 					pops_temp[units[i].id_pop].mudarRecs(2, QUANTIDADE_MINAR);
+					fontes_recursos[stoi(unidade_id) - 1].res_restante = fontes_recursos[stoi(unidade_id) - 1].res_restante - QUANTIDADE_MINAR;
 				}
 
 				makePops(pops_temp);
+				movimentarUnidades(unidade_anterior, fontes_recursos[stoi(unidade_id) - 1].getPosX() + 1, fontes_recursos[stoi(unidade_id) - 1].getPosY() + 1, 2);
+			}
+		}
+		else if (units[i].getIDGeral() == id){
+			unidade_anterior = id;
+			
+			if (units[i].getTipo() == "camp"){
+				fontes_recursos[stoi(unidade_id) - 1].res_restante = fontes_recursos[stoi(unidade_id) - 1].res_restante - QUANTIDADE_MINAR;
+
+				if (fontes_recursos[stoi(unidade_id) - 1].getTipo() == "Floresta"){
+					pops_temp[units[i].id_pop].mudarRecs(3, QUANTIDADE_MINAR);
+					fontes_recursos[stoi(unidade_id) - 1].res_restante = fontes_recursos[stoi(unidade_id) - 1].res_restante - QUANTIDADE_MINAR;
+				}
+				if (fontes_recursos[stoi(unidade_id) - 1].getTipo() == "Mina"){
+					pops_temp[units[i].id_pop].mudarRecs(1, QUANTIDADE_MINAR);
+					fontes_recursos[stoi(unidade_id) - 1].res_restante = fontes_recursos[stoi(unidade_id) - 1].res_restante - QUANTIDADE_MINAR;
+				}
+				if (fontes_recursos[stoi(unidade_id) - 1].getTipo() == "Pedreira"){
+					pops_temp[units[i].id_pop].mudarRecs(2, QUANTIDADE_MINAR);
+					fontes_recursos[stoi(unidade_id) - 1].res_restante = fontes_recursos[stoi(unidade_id) - 1].res_restante - QUANTIDADE_MINAR;
+				}
+
+				makePops(pops_temp);
+				movimentarUnidades(id, fontes_recursos[stoi(unidade_id) - 1].getPosX() + 1, fontes_recursos[stoi(unidade_id) - 1].getPosY() + 1, 2);
 			}
 		}
 	}
