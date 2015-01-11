@@ -485,14 +485,14 @@ void movimentarUnidades(int id, int x, int y, int tipo_movimento){
 	if (tipo_movimento == 1){
 		for (int i = 0; i < units.size(); i++){
 			if (units[i].getIDGeral() == id)
-				units[id].mudarCoordenadas(units[id - 1].getCoordX() + x, units[id - 1].getCoordY() + y);
+				units[i].mudarCoordenadas(units[i].getCoordX() + x, units[i].getCoordY() + y);
 		}
 	}
 
 	if (tipo_movimento == 2){
 		for (int i = 0; i < units.size(); i++){
 			if (units[i].getIDGeral() == id)
-				units[id].mudarCoordenadas(x, y);
+				units[i].mudarCoordenadas(x, y);
 		}
 	}
 
@@ -735,7 +735,7 @@ void recRecursos(string unidade_id, int id){
 	vector<Popul> pops_temp = getPops();
 
 	for (int i = 0; i < units.size(); i++){
-		if (units[i].getIDGeral() == id && unidade_id != "-"){
+		if (units[i].getIDGeral() == id && unidade_id == "-"){
 			movimentarUnidades(unidade_anterior, fontes_recursos[stoi(unidade_id)].getPosX() + 1, fontes_recursos[stoi(unidade_id)].getPosY() + 1, 2);
 
 			if (units[i].getTipo() == "camp"){
@@ -756,18 +756,18 @@ void recRecursos(string unidade_id, int id){
 		}
 		else if (units[i].getIDGeral() == id){
 			unidade_anterior = id;
-			movimentarUnidades(id, fontes_recursos[stoi(unidade_id)].getPosX() + 1, fontes_recursos[stoi(unidade_id)].getPosY() + 1, 2);
+			movimentarUnidades(id, fontes_recursos[stoi(unidade_id) - 1].getPosX() + 1, fontes_recursos[stoi(unidade_id) - 1].getPosY() + 1, 2);
 			
 			if (units[i].getTipo() == "camp"){
-				fontes_recursos[stoi(unidade_id)].res_restante = fontes_recursos[stoi(unidade_id)].res_restante - QUANTIDADE_MINAR;
+				fontes_recursos[stoi(unidade_id) - 1].res_restante = fontes_recursos[stoi(unidade_id) - 1].res_restante - QUANTIDADE_MINAR;
 
-				if (fontes_recursos[stoi(unidade_id)].getTipo() == "flo"){
+				if (fontes_recursos[stoi(unidade_id) - 1].getTipo() == "flo"){
 					pops_temp[units[i].id_pop].mudarRecs(3, QUANTIDADE_MINAR);
 				}
-				if (fontes_recursos[stoi(unidade_id)].getTipo() == "min"){
+				if (fontes_recursos[stoi(unidade_id) - 1].getTipo() == "min"){
 					pops_temp[units[i].id_pop].mudarRecs(1, QUANTIDADE_MINAR);
 				}
-				if (fontes_recursos[stoi(unidade_id)].getTipo() == "ped"){
+				if (fontes_recursos[stoi(unidade_id) - 1].getTipo() == "ped"){
 					pops_temp[units[i].id_pop].mudarRecs(2, QUANTIDADE_MINAR);
 				}
 
