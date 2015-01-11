@@ -188,11 +188,14 @@ int verificarComandoJogo(){
 
 	if (bocados1[0] == "next"){
 
-		if (bocados1.size() !=1)
+		if (bocados1.size() >=1)
 			for (int next = 0; next < stoi(bocados1[1]); next++){
 				ia(stoi(bocados1[1]));
 				resetEcra();
 			}	
+		else{
+			ia(1);
+		}
 		resetEcra();
 		verificarComandoJogo();
 	}
@@ -233,7 +236,8 @@ int verificarComandoJogo(){
 	}
 
 	if (bocados1[0] == "mke"){
-
+		if (bocados1.size() == 6)
+			fazer_mke(stoi(bocados1[1]), bocados1[2], stoi(bocados1[3]), stoi(bocados1[4]));
 	}
 
 	if (bocados1[0] == "mku"){

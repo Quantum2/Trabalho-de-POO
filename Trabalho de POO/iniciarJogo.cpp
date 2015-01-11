@@ -387,6 +387,32 @@ void criarUnidades(string tipo, string nome_pop, int x, int y, int pop_id){
 	verificarComandoJogo();
 }
 
+void criarUnidadesInt(string tipo, string nome_pop, int x, int y, int pop_id){
+	Unidade temp(x, y, tipo, units.size() + 1, pop_id);
+	int temp_id;
+
+	temp_id = units.size() + barracos.size();
+	temp_id = temp_id + 1;
+
+	temp.setIDGeral(temp_id);
+	units.push_back(temp);
+
+	imprimirUnidades(units, coords_mapa_x, coords_mapa_y);
+}
+
+void criarEdiInt(string tipo, string nome_pop, int x, int y, int pop_id){
+	Edificio temp(x, y, tipo, units.size() + 1, pop_id);
+	int temp_id;
+
+	temp_id = units.size() + barracos.size();
+	temp_id = temp_id + 1;
+
+	temp.setIDGeral(temp_id);
+	barracos.push_back(temp);
+
+	imprimirEdificios(barracos, coords_mapa_x, coords_mapa_y);
+}
+
 void criarEdi(string tipo, string nome_pop, int x, int y, int pop_id){
 	Edificio temp(x, y, tipo, units.size() + 1, pop_id);
 	int temp_id;
@@ -854,37 +880,37 @@ void fazer(string oque){
 		if (barracos[i].getTipo() == "quar"){
 			if (oque == "sold"){
 				if (temp[0].getRecursos()[1] >= 10 && temp[0].getRecursos()[2] >= 25){
-					criarUnidades("sold", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
+					criarUnidadesInt("sold", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
 					temp[0].mudarRecs(2, -10);
 					temp[0].mudarRecs(3, -25);
 				}
 			}
 			if (oque == "camp"){
 				if (temp[0].getRecursos()[1] >= 5 && temp[0].getRecursos()[2] >= 10){
-					criarUnidades("camp", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
-					temp[0].mudarRecs(2, -10);
-					temp[0].mudarRecs(3, -25);
+					criarUnidadesInt("camp", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
+					temp[0].mudarRecs(2, -5);
+					temp[0].mudarRecs(3, -10);
 				}
 			}
 			if (oque == "cav"){
 				if (temp[0].getRecursos()[1] >= 15 && temp[0].getRecursos()[2] >= 35){
-					criarUnidades("caval", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
-					temp[0].mudarRecs(2, -10);
-					temp[0].mudarRecs(3, -25);
+					criarUnidadesInt("caval", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
+					temp[0].mudarRecs(2, -15);
+					temp[0].mudarRecs(3, -35);
 				}
 			}
 			if (oque == "cv"){
 				if (temp[0].getRecursos()[1] >= 10 && temp[0].getRecursos()[2] >= 35){
-					criarUnidades("camp_caval", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
+					criarUnidadesInt("camp_caval", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
 					temp[0].mudarRecs(2, -10);
-					temp[0].mudarRecs(3, -25);
+					temp[0].mudarRecs(3, -35);
 				}
 			}
 			if (oque == "catapulta"){
 				if (temp[0].getRecursos()[1] >= 65 && temp[0].getRecursos()[2] >= 100){
-					criarUnidades("catap", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
-					temp[0].mudarRecs(2, -10);
-					temp[0].mudarRecs(3, -25);
+					criarUnidadesInt("catap", temp[0].getNome(), barracos[i].getCoordX() + 1, barracos[i].getCoordY() + 1, 0);
+					temp[0].mudarRecs(2, -65);
+					temp[0].mudarRecs(3, -100);
 				}
 			}
 		}
@@ -895,10 +921,96 @@ void fazer(string oque){
 			verificarComandoJogo();
 		}
 	}
+
+	makePops(temp);
+	resetEcra();
+	verificarComandoJogo();
 }
 
 void fazer_mke(int id, string oque, int x, int y){
+	vector<Popul> temp;
+	temp = getPops();
+	int unidade_anterior;
 
+	for (int i = 0; i < units.size(); i++){
+		if (units[i].getIDGeral() == id){
+			if (units[i].getTipo() == "camp"){
+				units[i].mudarCoordenadas(x - 1, y);
+				if (oque == "quar"){
+					if (temp[0].getRecursos()[0] >= 10 && temp[0].getRecursos()[1] >= 50 && temp[0].getRecursos()[2] >= 100){
+						criarEdiInt("quar", temp[0].getNome(), x, y, 0);
+						temp[0].mudarRecs(1, -10);
+						temp[0].mudarRecs(2, -50);
+						temp[0].mudarRecs(3, -100);
+					}
+				}
+				if (oque == "cas"){
+					if (temp[0].getRecursos()[0] >= 5 && temp[0].getRecursos()[1] >= 35 && temp[0].getRecursos()[2] >= 75){
+						criarEdiInt("cast", temp[0].getNome(), x, y, 0);
+						temp[0].mudarRecs(1, -5);
+						temp[0].mudarRecs(2, -35);
+						temp[0].mudarRecs(3, -75);
+					}
+				}
+				if (oque == "quin"){
+					if (temp[0].getRecursos()[0] >= 2 && temp[0].getRecursos()[1] >= 10 && temp[0].getRecursos()[2] >= 55){
+						criarEdiInt("quinta", temp[0].getNome(), x, y, 0);
+						temp[0].mudarRecs(1, -2);
+						temp[0].mudarRecs(2, -10);
+						temp[0].mudarRecs(3, -55);
+					}
+				}
+				if (oque == "est"){
+					if (temp[0].getRecursos()[0] >= 2 && temp[0].getRecursos()[1] >= 25 && temp[0].getRecursos()[2] >= 55){
+						criarEdiInt("esta", temp[0].getNome(), x, y, 0);
+						temp[0].mudarRecs(1, -2);
+						temp[0].mudarRecs(2, -25);
+						temp[0].mudarRecs(3, -55);
+					}
+				}
+			}
+
+			if (units[i].getTipo() == "camp_caval"){
+					units[i].mudarCoordenadas(x - 1, y);
+					if (oque == "quar"){
+						if (temp[0].getRecursos()[0] >= 10 && temp[0].getRecursos()[1] >= 50 && temp[0].getRecursos()[2] >= 100){
+							criarEdiInt("quar", temp[0].getNome(), x, y, 0);
+							temp[0].mudarRecs(1, -10);
+							temp[0].mudarRecs(2, -50);
+							temp[0].mudarRecs(3, -100);
+						}
+					}
+					if (oque == "cas"){
+						if (temp[0].getRecursos()[0] >= 5 && temp[0].getRecursos()[1] >= 35 && temp[0].getRecursos()[2] >= 75){
+							criarEdiInt("cast", temp[0].getNome(), x, y, 0);
+							temp[0].mudarRecs(1, -5);
+							temp[0].mudarRecs(2, -35);
+							temp[0].mudarRecs(3, -75);
+						}
+					}
+					if (oque == "quin"){
+						if (temp[0].getRecursos()[0] >= 2 && temp[0].getRecursos()[1] >= 10 && temp[0].getRecursos()[2] >= 55){
+							criarEdiInt("quinta", temp[0].getNome(), x, y, 0);
+							temp[0].mudarRecs(1, -2);
+							temp[0].mudarRecs(2, -10);
+							temp[0].mudarRecs(3, -55);
+						}
+					}
+					if (oque == "est"){
+						if (temp[0].getRecursos()[0] >= 2 && temp[0].getRecursos()[1] >= 25 && temp[0].getRecursos()[2] >= 55){
+							criarEdiInt("esta", temp[0].getNome(), x, y, 0);
+							temp[0].mudarRecs(1, -2);
+							temp[0].mudarRecs(2, -25);
+							temp[0].mudarRecs(3, -55);
+						}
+					}
+			}
+		}
+	}
+
+	makePops(temp);
+	resetEcra();
+	verificarComandoJogo();
 }
 
 void resetEcra(){
