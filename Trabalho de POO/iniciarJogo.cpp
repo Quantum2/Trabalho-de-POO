@@ -454,6 +454,8 @@ void atacar(int id, int id_vitima){
 					defesa_vit = 0;
 				if (units[pos_vit_id].getTipo() == "camp_caval")
 					defesa_vit = 0;
+				if (units[pos_vit_id].getTipo() == "camp")
+					defesa_vit = 0.5f;
 
 				resetEcra();
 				con.gotoxy(units[pos_vit_id].getCoordX() + 2, units[pos_vit_id].getCoordY());
@@ -479,6 +481,35 @@ void atacar(int id, int id_vitima){
 					defesa_vit = 0;
 				if (units[pos_vit_id].getTipo() == "camp_caval")
 					defesa_vit = 0;
+				if (units[pos_vit_id].getTipo() == "camp")
+					defesa_vit = 0.5f;
+
+				resetEcra();
+				con.gotoxy(units[pos_vit_id].getCoordX() + 2, units[pos_vit_id].getCoordY());
+				dano = f_ataque * (1 - defesa_vit);
+				cout << "-" << dano;
+				con.gotoxy(units[pos_vit_id].getCoordX() + 2, units[pos_vit_id].getCoordY() + 1);
+				cout << "V: " << units[pos_vit_id].getVida();
+				Sleep(TEMPO_ESPERA);
+				units[pos_vit_id].mudarVida(units[pos_vit_id].getVida() - (f_ataque * (1 - defesa_vit)));
+			}
+
+			if (units[i].getTipo() == "catap")
+			{
+				f_ataque = 15;
+				defesa_vit = 1;
+				units[i].mudarCoordenadas(pos_x_vit - 1, pos_y_vit - 1);
+
+				if (units[pos_vit_id].getTipo() == "sold")
+					defesa_vit = 0.2f;
+				if (units[pos_vit_id].getTipo() == "caval")
+					defesa_vit = 0.4f;
+				if (units[pos_vit_id].getTipo() == "camp")
+					defesa_vit = 0;
+				if (units[pos_vit_id].getTipo() == "camp_caval")
+					defesa_vit = 0;
+				if (units[pos_vit_id].getTipo() == "camp")
+					defesa_vit = 0.5f;
 
 				resetEcra();
 				con.gotoxy(units[pos_vit_id].getCoordX() + 2, units[pos_vit_id].getCoordY());
@@ -558,6 +589,31 @@ void atacar(int id, int id_vitima){
 				Sleep(TEMPO_ESPERA);
 				barracos[pos_vit_id].mudarVida(barracos[pos_vit_id].getVida() - (f_ataque * (1 - defesa_vit)));
 			}
+
+			if (units[i].getTipo() == "catap")
+			{
+				f_ataque = 15;
+				defesa_vit = 1;
+				units[i].mudarCoordenadas(pos_x_vit - 1, pos_y_vit - 1);
+
+				if (barracos[pos_vit_id].getTipo() == "cast")
+					defesa_vit = 0;
+				if (barracos[pos_vit_id].getTipo() == "quar")
+					defesa_vit = 0;
+				if (barracos[pos_vit_id].getTipo() == "esta")
+					defesa_vit = 0;
+				if (barracos[pos_vit_id].getTipo() == "quinta")
+					defesa_vit = 0;
+
+				resetEcra();
+				con.gotoxy(barracos[pos_vit_id].getCoordX() + 2, barracos[pos_vit_id].getCoordY());
+				dano = f_ataque * (1 - defesa_vit);
+				cout << "-" << dano;
+				con.gotoxy(barracos[pos_vit_id].getCoordX() + 2, barracos[pos_vit_id].getCoordY() + 1);
+				cout << "V: " << barracos[pos_vit_id].getVida();
+				Sleep(TEMPO_ESPERA);
+				barracos[pos_vit_id].mudarVida(barracos[pos_vit_id].getVida() - (f_ataque * (1 - defesa_vit)));
+			}
 		}
 	}
 
@@ -574,12 +630,14 @@ void atacar(int id, int id_vitima){
 }
 
 void recRecursos(string unidade_id, int id){
+	int unidade_anterior;
+
 	for (int i = 0; i < units.size(); i++){
 		if (units[i].getIDGeral() == id && unidade_id != "-"){
-			movimentarUnidades(id, fontes_recursos[stoi(unidade_id)].getPosX() + 1, fontes_recursos[stoi(unidade_id)].getPosY() + 1, 2);
+			movimentarUnidades(unidade_anterior, fontes_recursos[stoi(unidade_id)].getPosX() + 1, fontes_recursos[stoi(unidade_id)].getPosY() + 1, 2);
 		}
 		else if (units[i].getIDGeral() == id){
-
+			movimentarUnidades(id, fontes_recursos[stoi(unidade_id)].getPosX() + 1, fontes_recursos[stoi(unidade_id)].getPosY() + 1, 2);
 		}
 	}
 }
